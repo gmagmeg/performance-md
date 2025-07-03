@@ -1,0 +1,35 @@
+# Apache + mod_php
+
+- NTS（Non Thread Safe）、プロセスベース
+- ApacheのモジュールとしてPHPが直接組み込まれる形式。
+リクエストごとにプロセスが処理されるため、メモリ使用量が大きくなりがち。
+- 設定がシンプルで歴史も長い。レガシーシステムで採用されている定番構成
+
+# Nginx + PHP-FPM
+
+- NTS（Non Thread Safe）、マルチプロセス形式
+- NginxとPHP-FPM（FastCGI Process Manager）が別プロセスで動作する。
+- プロセスプールによるリソース管理で、高トラフィック時の安定性とメモリ効率が優秀
+
+# Nginx + Swoole
+
+- NTS版とZTS版の両方が存在（コルーチンはシングルスレッドで動作）
+- PHPの非同期I/O拡張で、コルーチンベースの並行処理を実現
+- HTTPサーバー機能を内蔵し、常駐プロセスでリクエストを処理するため高速
+
+## Swooleの特記事項
+
+Swoole自体組み込みWebサーバーを持っていますが、Nginxを前段に立てています。
+
+# FrankenPHP
+
+- ZTS（Zend Thread Safe）、マルチスレッド形式
+- Go言語で実装されたPHPのSAPIで、Caddyサーバーに統合されている
+- ワーカーモードによるアプリケーション常駐化で、起動オーバーヘッドを削減
+
+## FrankenPHPの補足事項
+
+2025年5月に**PHP Foundation**からのオフィシャルサポートを受けることが決定。
+積極的にサポートされることが公式に発表されました。
+
+[FrankenPHP Is Now Officially Supported by The PHP Foundation — The PHP Foundation — Supporting, Advancing, and Developing the PHP Language](https://thephp.foundation/blog/2025/05/15/frankenphp/)
