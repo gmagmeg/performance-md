@@ -76,7 +76,10 @@ PHPには2つのビルドバージョンがあります
 
 # Swooleの補足事項
 
-Swoole自体組み込みWebサーバーを持っていますが、Nginxを前段に立てています。
+Swoole自体組み込みWebサーバーを持っています
+が、餅は餅屋。Webサーバーを立てることを公式も推奨。
+
+<img src="../images/swoole_http_image.png">
 
 ---
 
@@ -105,3 +108,5 @@ https://www.docswell.com/s/1313108/ZP2QQ1-2025-03-21-123847
 
 
 ---
+
+負荷試験環境の話をここから書いていく
