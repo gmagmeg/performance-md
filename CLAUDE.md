@@ -1,39 +1,118 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 ---
 description: 
 globs: 
 alwaysApply: true
 ---
-# Marpテンプレート更新ルール
 
-## 基本ルール
+## Project Overview
 
-1. テンプレート
-   - テンプレートは ./@YYYYMMDD_template.md を元に生成する
-   - YYYYMMDDを日付にして、最適なタイトルでファイルを作成すること
+This is a Marp presentation project for creating technical slides. The workflow involves:
+1. Creating raw content in `input/` directory as `.txt` files
+2. Converting content to Marp-formatted `.md` files in `output/` directory
+3. Using custom CSS themes from `themes/` directory
+4. Placing images in `.images/` directory
 
-2. 1スライドあたりの文字数制限
-   - タイトル: 最大40文字
-   - 本文: 1行あたり最大50文字
-   - 1スライドあたりの総文字数: 最大500文字
+## Content Creation Rules
 
-3. 行数制限
-   - 1スライドあたりの最大行数: 15行
-   - コードブロックは1ブロックあたり最大20行
+### File Naming Convention
+- Input files: `input/XXXYYY.txt` (where XXX is sequence, YYY is topic code)
+- Output files: `output/YYYYMMDD_topic_description.md` (date-based naming)
+- Template reference: `@YYYYMMDD_template.md` (though template file doesn't exist yet)
 
-4. 画像使用ルール
-   - 1スライドあたり最大2枚まで
-   - 画像サイズ: 幅最大800px
-   - 画像は必ず`.images`ディレクトリに配置
+### Content Constraints
+- **Title**: Maximum 40 characters
+- **Body text**: Maximum 50 characters per line
+- **Total slide content**: Maximum 500 characters per slide
+- **Maximum lines per slide**: 15 lines
+- **Code blocks**: Maximum 20 lines per block
+- **Images**: Maximum 2 per slide, maximum 800px width
+- **Heading levels**: h1 to h3 only
+- **Lists**: Maximum 3 levels of nesting
+- **Tables**: Maximum 1 per slide
 
-5. フォーマット制限
-   - 見出しレベル: h1からh3まで
-   - リスト: 最大3階層まで
-   - 表: 1スライドあたり最大1つ
+### Required Marp Front Matter
+```yaml
+---
+marp: true
+theme: custom
+---
+```
 
-## 更新時の注意事項
+## Architecture
 
-1. テンプレート更新時は必ず上記の制限を遵守
-2. 既存のスライドのレイアウトを崩さない
-3. 画像の配置は中央揃えを基本とする
+### Directory Structure
+```
+input/          # Raw content files (.txt)
+output/         # Generated Marp presentations (.md)
+themes/         # Custom CSS themes
+.images/        # Image assets
+resources/      # Additional resources
+```
 
-4. コードブロックは適切な言語指定を行う
+### Theme System
+- Primary theme: `themes/custom.css`
+- Brand colors: booost company colors (blue #00338D, green #27DB84)
+- Custom classes available: `.lead`, `.inverse`, `.center`
+- Table styling with branded headers and hover effects
+
+### Content Processing Workflow
+1. Write content in `input/` as structured text
+2. Convert to Marp format with proper slide breaks (`---`)
+3. Apply content constraints and formatting rules
+4. Use custom theme for consistent branding
+5. Place images in `.images/` directory and reference appropriately
+
+## Development Guidelines
+
+### When Creating New Presentations
+1. Always start with content in `input/` directory
+2. Use date-based naming for output files
+3. Respect all content constraints (character limits, line limits, etc.)
+4. Center-align images by default
+5. Specify language for code blocks
+6. Maintain existing slide layout patterns
+
+### Theme Customization
+- Modify `themes/custom.css` for styling changes
+- Brand colors are defined in CSS variables
+- Table styling follows specific pattern with branded headers
+- Custom section classes available for different slide types
+
+### Image Management
+- Store all images in `.images/` directory
+- Maximum 2 images per slide
+- Maximum width 800px
+- Default to center alignment
+
+## Content Format Examples
+
+### Basic slide structure:
+```markdown
+---
+marp: true
+theme: custom
+---
+
+## Slide Title
+
+Content goes here
+
+---
+
+## Next Slide
+
+More content
+```
+
+### Table format:
+```markdown
+| Item | Column 1 | Column 2 |
+| --- | --- | --- |
+| Row 1 | Data | Data |
+```
+
+Tables automatically get booost brand styling with blue headers.
