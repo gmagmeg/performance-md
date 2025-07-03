@@ -1,0 +1,166 @@
+/* @theme custom */
+
+@import 'default';
+/*
+ * :root は、プレゼンテーション全体で使用する変数を定義します。
+ * ご提示いただいたブランドカラーの情報を反映しています。
+ */
+:root {
+  --main-color: #00338D; /* booost様のブランドカラー（青） */
+  --accent-color: #e91e63; /* プレゼンテーションのデザインで使用されるアクセント（ピンク） */
+  --brand-green: #27DB84; /* booost様のブランドカラー（緑） */
+  --text-color: #000000; /* 基本のテキストカラー（黒） */
+  --text-color-inverse: #FFFFFF; /* 反転色のテキストカラー（白） */
+  --bg-color-inverse: #00338D; /* 反転色の背景カラー（ブランドの青） */
+  --header-font-weight: 600; /* ヘッダーのフォントの太さ */
+}
+
+/* section は、各スライドの基本スタイルを定義します。*/
+section {
+  background-color: #fff;
+  color: var(--text-color);
+  font-family: 'Helvetica', 'Arial', 'Meiryo', sans-serif;
+  padding: 50px;
+  line-height: 1.6;
+}
+
+/* ヘッダー(h1, h2) のスタイルを定義します。 */
+h1, h2 {
+  color: var(--main-color);
+  font-weight: var(--header-font-weight);
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+}
+
+h1 {
+  font-size: 2.2em;
+  /* プレゼンテーションのデザインを維持するため、下線はピンクのままにします */
+  border-bottom: 4px solid var(--accent-color);
+  display: inline-block;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #eee;
+}
+
+/* リンク(a) のスタイルには、ブランドの緑色を適用します。 */
+a {
+  color: var(--brand-green);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* コードブロック(<pre><code>) のスタイルを定義します。 */
+pre {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  border-radius: 8px;
+  padding: 1em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+code {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9em;
+}
+
+/* 引用(blockquote) のスタイルを定義します。 */
+blockquote {
+  border-left: 5px solid var(--main-color);
+  padding-left: 15px;
+  color: #555;
+  font-style: italic;
+}
+
+/* リスト(ul, ol) のスタイルを定義します。 */
+ul, ol {
+  margin-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* 画像(img) のスタイルを定義します。 */
+img {
+  max-width: 80%;
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+}
+
+/* フッター(footer) のスタイルを定義します。 */
+footer {
+  font-size: 0.7em;
+  color: #888;
+  position: absolute;
+  bottom: 30px;
+  right: 50px;
+}
+
+/*
+ * カスタムクラス
+ * これらはスライドのヘッダーで `` のように使用します。
+ */
+
+/* .lead は、タイトルページや強調したいスライドに使用します。 */
+section.lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+section.lead h1 {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  text-align: left;
+}
+
+/* .inverse は、背景色と文字色を反転させ、セクションの区切りなどに使用します。 */
+section.inverse {
+  background-color: var(--bg-color-inverse);
+  color: var(--text-color-inverse);
+  position: relative;
+}
+
+section.inverse h1, section.inverse h2 {
+  color: var(--text-color-inverse);
+  border-bottom-color: var(--text-color-inverse);
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  text-align: left;
+}
+
+/* .center は、コンテンツを中央揃えにします。 */
+section.center {
+    text-align: center;
+    position: relative;
+}
+
+section.center h1, section.center h2 {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    text-align: left;
+}
+
+section.center p, section.center ul, section.center ol {
+    text-align: left;
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    right: 50px;
+}
