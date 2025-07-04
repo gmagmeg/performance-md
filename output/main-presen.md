@@ -128,10 +128,35 @@ githubに挙げているので、そちらを参照してください
 # 各環境共通事項
 
 ### アプリケーション基盤
-- **PHP**: 8.3.20 <img src="../images/logo/new-php-logo.png" width="10%">
-- **データベース**: MySQL 8.0<img src="../images/logo/mysql.png" width="10%">
-- **コンテナ**: Docker <img src="../images/logo/Docker-logo.png" width="10%">
-- **監視**: OpenTelemetry (Jaeger) <img src="../images/logo/opentelemetry.png" width="10%">
+
+<div class="tech-stack">
+  <div class="tech-item">
+    <img src="../images/logo/new-php-logo.png" alt="PHP">
+    <div class="tech-info">
+      <div class="tech-name">PHP</div>
+      <div class="tech-version">8.3.20</div>
+    </div>
+  </div>
+  <div class="tech-item">
+    <img src="../images/logo/mysql.png" alt="MySQL">
+    <div class="tech-info">
+      <div class="tech-name">MySQL</div>
+      <div class="tech-version">8.0</div>
+    </div>
+  </div>
+  <div class="tech-item">
+    <img src="../images/logo/Docker-logo.png" alt="Docker">
+    <div class="tech-info">
+      <div class="tech-name">Docker</div>
+    </div>
+  </div>
+  <div class="tech-item">
+    <img src="../images/logo/opentelemetry.png" alt="OpenTelemetry">
+    <div class="tech-info">
+      <div class="tech-name">OpenTelemetry</div>
+    </div>
+  </div>
+</div>
 
 ---
 
