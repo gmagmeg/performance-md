@@ -110,3 +110,97 @@ https://www.docswell.com/s/1313108/ZP2QQ1-2025-03-21-123847
 ---
 
 負荷試験環境の話をここから書いていく
+
+---
+
+## ざっくり実行環境紹介
+
+前提となる各PHP実行環境を紹介します
+
+---
+
+# 詳細はこちら
+
+githubに挙げているので、そちらを参照してください
+
+---
+
+# 各環境共通事項
+
+### アプリケーション基盤
+- **PHP**: 8.3.20 <img src="../images/logo/new-php-logo.png" width="10%">
+- **データベース**: MySQL 8.0<img src="../images/logo/mysql.png" width="10%">
+- **コンテナ**: Docker <img src="../images/logo/Docker-logo.png" width="10%">
+- **監視**: OpenTelemetry (Jaeger) <img src="../images/logo/opentelemetry.png" width="10%">
+
+---
+
+## 異なる構成部分
+
+<div class="columns">
+<div>
+
+### NTS（スレッド安全でない）構成
+- フレームワーク　Laravel 12
+#### 対象実行環境
+- Apache + mod_php 
+- Nginx + php-fpm 
+
+</div>
+<div>
+
+### ZTS（スレッド安全）構成
+- フレームワーク Laravel Octane
+#### 対象実行環境
+- Swoole + Nginx (Laravel Octane)
+- FrankenPHP (Laravel Octane)
+
+</div>
+</div>
+
+---
+
+# 比較検証のポイント
+
+1. **レスポンス時間**: 同一負荷での応答速度比較
+2. **スループット**: 単位時間あたりの処理能力
+3. **メモリ使用量**: 各構成でのメモリ効率
+4. **CPU使用率**: 処理負荷によるCPU消費
+5. **同時接続数**: 最大同時接続処理能力
+6. **エラー率**: 高負荷時のエラー発生率
+
+---
+
+# 計測ツール
+
+- **OpenTelemetry**: アプリケーション監視
+- **k6**: 負荷テスト
+
+### OpenTelemetryを選んだ理由
+- ZTS環境に対応したプロファイリングツールが少ない
+- 詳細: https://zenn.dev/booost/articles/a691d0fe7aeae6
+
+---
+
+# 計測しない項目
+
+**ブラウザレンダリング**
+- WebAPIサーバーとして振る舞うことが多いため
+
+---
+
+# テストシナリオ
+
+**記事投稿 + 記事取得**
+- 実際のWebアプリケーションを想定
+- CRUD操作の性能を検証
+
+---
+
+
+## データベース設計
+
+**ER図を挿入**
+- 記事テーブル
+- ユーザーテーブル
+- 関連性を含む設計

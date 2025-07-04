@@ -1,0 +1,1 @@
+outputディレクトリのファイルをmain-presen.mdに統合してください。

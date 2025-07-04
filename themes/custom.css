@@ -238,3 +238,18 @@ tr:hover {
   width: 25%;
   opacity: 0.8;
 }
+
+/* 2列レイアウト用のクラス */
+.columns {
+  display: flex;
+  gap: 40px;
+  margin: 20px 0;
+}
+
+.columns > div {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
