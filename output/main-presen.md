@@ -145,17 +145,19 @@ githubに挙げているので、そちらを参照してください
     </div>
   </div>
   <div class="tech-item">
+    <img src="../images/logo/laravel-2.svg" alt="Laravel">
+    <div class="tech-info">
+      <div class="tech-name">Laravel</div>
+      <div class="tech-version">12.0</div>
+    </div>
+  </div>
+  <div class="tech-item">
     <img src="../images/logo/Docker-logo.png" alt="Docker">
     <div class="tech-info">
       <div class="tech-name">Docker</div>
     </div>
   </div>
-  <div class="tech-item">
-    <img src="../images/logo/opentelemetry.png" alt="OpenTelemetry">
-    <div class="tech-info">
-      <div class="tech-name">OpenTelemetry</div>
-    </div>
-  </div>
+
 </div>
 
 ---
@@ -166,7 +168,7 @@ githubに挙げているので、そちらを参照してください
 <div>
 
 ### NTS（スレッド安全でない）構成
-- フレームワーク　Laravel 12
+- Laravel 12
 #### 対象実行環境
 - Apache + mod_php 
 - Nginx + php-fpm 
@@ -175,7 +177,7 @@ githubに挙げているので、そちらを参照してください
 <div>
 
 ### ZTS（スレッド安全）構成
-- フレームワーク Laravel Octane
+- Laravel 12 + **Octane**
 #### 対象実行環境
 - Swoole + Nginx (Laravel Octane)
 - FrankenPHP (Laravel Octane)
@@ -198,8 +200,24 @@ githubに挙げているので、そちらを参照してください
 
 # 計測ツール
 
-- **OpenTelemetry**: アプリケーション監視
-- **k6**: 負荷テスト
+<div class="tech-stack">
+  <div class="tech-item">
+    <img src="../images/logo/K6-logo.svg.png" alt="PHP">
+    <div class="tech-info">
+      <div class="tech-name">k6</div>
+      <div class="tech-version">負荷検証</div>
+    </div>
+  </div>
+
+  <div class="tech-item">
+    <img src="../images/logo/opentelemetry.png" alt="OpenTelemetry">
+    <div class="tech-info">
+      <div class="tech-name">OpenTelemetry</div>
+      <div class="tech-version">プロファイリング</div>
+    </div>
+  </div>
+</div>
+
 
 ### OpenTelemetryを選んだ理由
 - ZTS環境に対応したプロファイリングツールが少ない
