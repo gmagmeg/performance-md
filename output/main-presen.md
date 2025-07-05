@@ -241,9 +241,28 @@ githubに挙げているので、そちらを参照してください
 ---
 
 
-## データベース設計
+## データベース
+計：９テーブルを更新する
 
-**ER図を挿入**
-- 記事テーブル
-- ユーザーテーブル
-- 関連性を含む設計
+<div class="columns">
+<div>
+
+1. users
+2. posts
+3. categories
+4. tags
+5. comments
+
+</div>
+<div>
+
+6. post_views
+7. likes
+8. post_tags
+9. post_categories
+
+</div>
+</div>
+
+---
+
