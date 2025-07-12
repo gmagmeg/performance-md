@@ -1,0 +1,17 @@
+{
+  "apache": {
+    "server": "apache",
+    "avg_cpu": 35.77,
+    "avg_memory": 360.08
+  },
+  "frankenphp": {
+    "server": "frankenphp",
+    "avg_cpu": 20.47,
+    "avg_memory": 283.43
+  },
+  "nginx-php": {
+    "server": "nginx-php",
+    "avg_cpu": 34.32,
+    "avg_memory": 88.75
+  }
+}
