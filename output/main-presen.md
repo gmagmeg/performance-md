@@ -247,7 +247,7 @@ githubに挙げているので、そちらを参照してください
 <div class="columns">
 <div>
 
-1. users
+1. usersd
 2. posts
 3. categories
 4. tags
