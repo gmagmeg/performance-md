@@ -329,3 +329,11 @@ ol li::before {
   justify-content: center;
   box-shadow: 0 2px 4px rgba(37, 37, 37, 0.2);
 }
+
+/* 絵文字と見出しを同じ行に配置 */
+h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  white-space: nowrap;
+}
