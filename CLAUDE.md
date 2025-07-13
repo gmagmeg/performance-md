@@ -116,3 +116,45 @@ More content
 ```
 
 Tables automatically get booost brand styling with blue headers.
+
+## Commands and Build Process
+
+### Current Workflow (Manual)
+This project currently uses a manual workflow with no automated build system:
+
+1. **Content Creation**: Write raw content in `input/` directory
+2. **Manual Conversion**: Convert to Marp format in `output/` directory
+3. **Presentation Generation**: Use Marp CLI or compatible viewer to generate slides
+
+### Presentation Viewing
+- Use Marp CLI: `marp output/main-presen.md` (if installed)
+- Use Marp for VS Code extension for live preview
+- Export to PDF/HTML: `marp output/main-presen.md --pdf` or `--html`
+
+## Performance Testing Data Structure
+
+The `keisoku-kekka/` directory contains structured performance testing results:
+- `no-cache/`: Results without OPcache enabled
+- `on-cache/`: Results with OPcache enabled, subdivided by server type
+- `spike/`: Spike load testing results
+- Each subdirectory contains JSON performance data and CSV memory usage data
+
+### Performance Testing Architecture
+- **Testing Tool**: k6 for load testing
+- **Monitoring**: OpenTelemetry for profiling
+- **Environments Tested**: Apache+PHP, Nginx+PHP-FPM, Swoole, FrankenPHP
+- **Key Metrics**: Response times (P90, P95), memory usage, CPU utilization, error rates
+
+## Key Architectural Decisions
+
+### Theme System Architecture
+- Single custom theme with CSS variables for brand consistency
+- Responsive layout with logo positioning classes
+- Special layouts: `.columns` for 2-column content, `.tech-stack` for technology grids
+- Color scheme based on booost brand colors (blue #00338D, green #27DB84)
+
+### Content Organization Strategy
+- Input files use sequence-based naming (`XXXYYY.txt`) 
+- Output files use date-based naming for chronological organization
+- Performance data is categorized by testing scenario and server configuration
+- Images organized by type (logos vs. content images)

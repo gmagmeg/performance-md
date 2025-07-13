@@ -35,11 +35,17 @@ h1, h2 {
 h1 {
   font-size: 2.2em;
   /* プレゼンテーションのデザインを維持するため、下線はピンクのままにします */
-  border-bottom: 4px solid var(--accent-color);
+  border-bottom: 4px solid #00338D;
   display: inline-block;
   position: absolute;
   top: 50px;
   left: 50px;
+}
+
+h1.slide-section {
+  font-size: 2.5em;
+  border-bottom: none;
+  position: relative;
 }
 
 h2 {
@@ -244,6 +250,21 @@ tr:hover {
   display: flex;
   gap: 40px;
   margin: 20px 0;
+  align-items: center;
+}
+
+.columns p {
+  margin: 0;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.columns > .one {
+  flex: 1;
+}
+
+.columns > .three {
+  flex: 3;
 }
 
 .columns > div {
@@ -330,8 +351,20 @@ ol li::before {
   box-shadow: 0 2px 4px rgba(37, 37, 37, 0.2);
 }
 
+ul.ol-large li {
+  list-style: none;
+  font-size: 2em;
+  position: relative;
+  align-content: center;
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+
+
 /* 絵文字と見出しを同じ行に配置 */
 h3 {
+  font-size: 1.5em;
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -342,4 +375,9 @@ h3 {
   color: var(--accent-color);
   font-weight: bold;
   font-size: 1.2em;
+}
+
+.font-size-large {
+  font-size: 2em;
+  font-weight: bold;
 }

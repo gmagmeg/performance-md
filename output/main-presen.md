@@ -406,9 +406,9 @@ opcacheなしのfrankenphp
 
 ---
 
-## Memcacheの導入により大幅な性能改善
+## opcacheの導入により大幅な性能改善
 
-こんな簡単な設定でも効果<span style="font-size: 2em;">大</span>
+こんな簡単な設定でも効果<span class="font-size-large">大</span>
 ```
 - opcache.enable=1  // 有効にする
 - opcache.enable_cli=1 // cliモードでも有効にする
@@ -446,7 +446,7 @@ Webアプリケーションの**レスポンス性能**と**安定性**を評価
 
 ---
 
-## 計測結果発表
+<h1 class="slide-section">計測結果発表</h1>
 
 ---
 
@@ -501,7 +501,7 @@ PHPアプリケーションサーバー性能比較
 
 ---
 
-## 結果サマリー
+# 結果サマリー
 
 **性能ランキング:**
 1. **Swoole** - 最速レスポンス
@@ -515,3 +515,173 @@ PHPアプリケーションサーバー性能比較
 
 ---
 
+## 負荷シナリオ1・2総評
+
+### パフォーマンス面の発見
+
+**通常負荷時（シナリオ1）**
+- 全環境で安定動作、差は僅差
+- FrankenPHPが総合的に最優秀
+- OPcacheの効果が絶大（80%の性能向上）
+
+**高負荷時（シナリオ2）**
+- 環境間の性能差が顕著に現れる
+- 従来のApache構成では限界が露呈
+- ZTS・NTS環境が高負荷耐性で優位性を発揮
+
+---
+
+### 実運用での選択指針
+
+**性能重視**: FrankenPHP・Swoole
+**リソース効率**: Nginx+PHP-FPM
+**安定性重視**: Nginx+PHP-FPM・FrankenPHP
+
+### 重要な教訓
+**OPcacheは必須設定**
+どの環境でも80%の性能向上効果
+
+---
+
+FrankenPHPに乗り換えるのが正解か？
+考える顔のアイコン挟む
+
+---
+
+<h1 class="slide-section"> 既存環境のパフォーマンスを<br>向上させる
+
+---
+
+<ul class="ol-large">
+<li>1. opcacheを使う</li>
+<li>2. Apache, Nginx のearly hints(103)対応</li>
+<li>3. 潜在能力を秘めたSwoole</li>
+</ul>
+
+---
+
+# 1. opcacheを使う
+
+### 再掲
+```
+- opcache.enable=1  // 有効にする
+- opcache.enable_cli=1 // cliモードでも有効にする
+- opcache.memory_consumption=128 // キャッシュサイズの指定
+```
+
+---
+
+
+# 2. Apache, Nginxのearly hints(103)対応
+<p>&nbsp;</p>
+<div class="columns">
+  <p class="one"><img src="../images/logo/nginx-1.svg" width=50% /></p>
+  <p class="three">ver：1.29.0<br>2025年6月24日リリース分</p>
+</div>
+
+<div class="columns">
+  <p class="one"><img src="../images/logo/apache_logo.png" width=30% /></p>
+  <p class="three">モジュール：HTTP/2<br>https://httpd.apache.org/docs/current/howto/http2.html#page-header</p>
+</div>
+
+
+
+---
+
+Frankenphp
+early hints(103)　あり　無し
+
+---
+
+FrankenPHPは何もしなくても対応済み
+
+NginxとApacheは間に合わず
+間に合わず…
+
+---
+
+# 潜在能力を秘めたSwoole
+
+細かなチューニング項目が満載
+ざっくり80項目以上
+まだまだ早くなる
+
+---
+
+グラフ挿入
+
+---
+
+## まとめ：PHP実行環境選択の指針
+
+---
+
+# アプリケーションの状態で考える
+
+## そもそも現状に課題がないないのなら<br>変える必要はない
+
+今Apache + mod_php環境であっても
+課題がないのなら変える必要はありません。
+Apacheもバリバリ更新中
+
+---
+
+# アプリケーションの利用用途で考える
+
+## 読み取り主体か、書き込み主体か
+
+### アプリケーションが読み取り主体
+Webサーバー・PHPのチューニングが効果的
+
+### アプリケーションが書き込み主体
+DBのチューニングが効果的
+
+---
+
+# 実行環境特性まとめ
+
+
+## Apache+PHP
+<img src="../images/logo/apache_logo.png" class="apache-logo">
+
+- **適用シーン**: 既存継続運用。情報が豊富
+- **主なメリット**: 設定が簡単で、安定性している
+- **注意点**: １台で高負荷を受けると性能が劣化する
+LBを設置して複数サーバーに分散すれば、問題点も解消しやすい
+
+---
+
+## Nginx+PHP-FPM
+<img src="../images/logo/nginx-1.svg" class="nginx-logo">
+
+- **適用シーン**: バランス重視。現在最も普及している構成。
+- **主なメリット**: 低メモリで安定性が高い。
+- **注意点**: 中程度の性能だが、実用上は十分。
+１台１台のリソース効率が最も良好だが、サーバー台数が増えがち
+
+---
+
+## Swoole
+<img src="../images/logo/swoole.png" class="swoole-logo">
+
+- **適用シーン**: 高性能要求。リアルタイム性が重要なシステム
+- **主なメリット**: 最速レスポンス。コルーチンによる非同期処理
+- **注意点**: メモリ消費大・チューニング項目が多岐にわたる（80項目以上）
+常駐プロセスのため、メモリリークに注意が必要
+
+---
+
+## FrankenPHP
+<img src="../images/logo/frankenphp.png" class="frankenphp-logo">
+
+- **適用シーン**: 簡単に高性能要求を実現したい。
+- **主なメリット**: 簡単にいい性能を取りやすい（Early Hints標準対応など）
+- **注意点**: 新しい技術のため情報が少ない
+実運用例も少ない
+
+---
+
+皆さんの実行環境選択の助けになれば幸いです
+ご清聴ありがとうございました
+
+---
