@@ -7,14 +7,17 @@ theme: custom
 
 <!-- _class: center -->
 
-## パフォーマンスがいい方に換えるのが正解か？
-<div>&nbsp;<br>&nbsp;</div>
-<div>
-  <ul class="one font-size-large">
-    <li>FrankenPHP</li>
-    <li>Swoole</li>
-  </ul>
-  <div class="one">
-    <img src="../images/thinking_face.png" width="20%" />
-  </div>
-</div>
+# PHP実行環境パフォーマンス比較
+
+---
+
+<ol>
+<li>導入</li>
+<li class="active-text">諸々紹介（プロフィール・各環境・用語紹介）</li>
+<li>計測ツール</li>
+<li>負荷シナリオ１ - ストレステスト</li>
+<li>負荷シナリオ２ - スパイクテスト</li>
+<li>総評と選択指針</li>
+<li>環境を向上させるTips３選</li>
+<li>まとめ</li>
+</ol>

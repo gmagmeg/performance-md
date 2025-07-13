@@ -5,11 +5,108 @@ theme: custom
 
 <!-- paginate: true -->
 
-## PHPビルドバージョンと実行環境の比較
+
+## 目次
+
+1. 導入
+1. 諸々紹介（プロフィール・各環境・用語紹介）
+1. 計測ツール
+1. 負荷シナリオ１ - ストレステスト
+1. 負荷シナリオ２ - スパイクテスト
+1. 総評と選択指針
+1. 環境を向上させるTips３選
+1. まとめ
 
 ---
 
-## 概要
+<h1 class="slide-section"> 導　　入
+
+---
+
+# 比較・検証する環境
+
+<div>
+<p>今回は４つのPHP実行環境のパフォーマンス検証</p>
+</div>
+
+<div class="tech-stack">
+  <div class="tech-item">
+    <img src="../images/logo/apache_logo.png" alt="Apache">
+    <div class="tech-info">
+      <div class="tech-name">Apache + mod_php</div>
+      <div class="tech-version"></div>
+    </div>
+  </div>
+  <div class="tech-item">
+    <img src="../images/logo/nginx-1.svg" alt="Nginx">
+    <div class="tech-info">
+      <div class="tech-name">Nginx + PHP-FPM</div>
+      <div class="tech-version"></div>
+    </div>
+  </div>
+  <div class="tech-item">
+    <img src="../images/logo/swoole.png" alt="Swoole">
+    <div class="tech-info">
+      <div class="tech-name">Swoole + Nginx</div>
+      <div class="tech-version"></div>
+    </div>
+  </div>
+  <div class="tech-item">
+    <img src="../images/logo/frankenphp.png" alt="FrankenPHP">
+    <div class="tech-info">
+      <div class="tech-name">FrankenPHP</div>
+      <div class="tech-version"></div>
+    </div>
+  </div>
+</div>
+
+---
+
+# 実行シナリオ概要
+
+
+**テストタイプ**：ストレステスト
+**シナリオ概要**：ユーザーが記事を投稿して、
+投稿した記事を複数のユーザーが閲覧しに来る
+
+**テストタイプ**：スパイクテスト
+**シナリオ概要**：セール予告後のような急激な閲覧者増によるトラフィック増加に対する
+
+---
+
+<p class="middle-text">ソースコードなどの詳細はGitHubで公開中<br>
+urlをここに貼る
+</p>
+
+
+---
+
+<p class="middle-text">それぞれの環境でどうなるか<br>想定しながらお愉しみください</p>
+
+---
+
+<ol class="table-content">
+<li>導入</li>
+<li class="active-text">諸々紹介（プロフィール・各環境・用語紹介）</li>
+<li>計測ツール</li>
+<li>負荷シナリオ１ - ストレステスト</li>
+<li>負荷シナリオ２ - スパイクテスト</li>
+<li>総評と選択指針</li>
+<li>環境を向上させるTips３選</li>
+<li>まとめ</li>
+</ol>
+
+
+---
+
+プロフィール挟む
+これまで発表した内容
+
+---
+
+
+## PHPビルドバージョンと実行環境の比較
+
 
 PHPには2つのビルドバージョンがあります
 それぞれ異なる実行環境に最適化されています
@@ -275,13 +372,12 @@ githubに挙げているので、そちらを参照してください
 
 ## 負荷試験シナリオ１
 
-### 目的
-多数のユーザーによる同時アクセス時の**レスポンス性能**と**安定性**を評価する
-
 ### 概要
 ユーザーが記事を投稿して、
-投稿した記事を他のユーザーが閲覧しに来る想定
+投稿した記事を複数のユーザーが閲覧しに来る想定
 
+### 目的
+多数のユーザーによる同時アクセス時の**レスポンス性能**と**安定性**を評価する
 
 ---
 
@@ -426,9 +522,10 @@ PHPのチューニングの話は一旦おしまい。
 
 ## 負荷シナリオ２
 
-### 目的
+### 概要
+セール予告後のような急激な閲覧者増によるトラフィック増加に対する
 
-セール予告後のような急激なトラフィック増加に対する
+### 目的
 Webアプリケーションの**レスポンス性能**と**安定性**を評価する。
 
 **試験内容**:
@@ -624,10 +721,10 @@ Apacheもバリバリ更新中</span>
 
 ---
 
-### FrankenPHPの対応状況
+## FrankenPHPの対応状況
 
 <p>&nbsp;</p>
-<div class="columns">
+<div class="columns normal-text">
   <p class="one"><img src="../images/logo/frankenphp.png" /></p>
   <p class="three">early hints(103)は組み込み済み<br>
   PHPのコードに headers_send(103); と書くだけでOK<br>とても楽
@@ -639,60 +736,74 @@ Apacheもバリバリ更新中</span>
 # 3. Symfonyのドキュメントを参照する
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<div class="columns">
-  <p class="three"><img src="../images/logo/symphony-sample.png" width="70%" /></p>
-  <p class="one"><img src="../images/logo/symphony.png" />に関わらず役立つ情報がたくさん</p>
-</div>
-<a href="https://symfony.com/doc/current/performance.html">https://symfony.com/doc/current/performance.html</a> 
+<img src="../images/logo/symphony-sample.png" width="70%" />
 
 ---
 
-## まとめ：PHP実行環境選択の指針
+<p class="inline-img-block">
+<img src="../images/logo/symphony.png" width="40%" /><span class="middle-text">に関わらず役立つ情報がたくさん</span>
+</p>
+
+<ul class="middle-text">
+  <li>OPcacheの最適な設定値</li>
+  <li>compsoer の最適なinstall時の設定<br>etc・・・</li>
+</ul>
 
 ---
 
-# 実行環境特性まとめ
+## 実行環境特性まとめ
 
+---
 
-## Apache+PHP
+## Apache + mod_php
 <img src="../images/logo/apache_logo.png" class="apache-logo">
 
-- **適用シーン**: 既存継続運用。情報が豊富
-- **主なメリット**: 設定が簡単で、安定性している
-- **注意点**: １台で高負荷を受けると性能が劣化する
-LBを設置して複数サーバーに分散すれば、問題点も解消しやすい
+<ul class="middle-list-text">
+  <li><strong>適用シーン</strong>: 既存継続運用。情報が豊富</li>
+  <li><strong>主なメリット</strong>: 設定が簡単で、安定性している</li>
+  <li><strong>注意点</strong>: １台で高負荷を受けると性能が劣化する<br>
+  LBを設置してサーバー分散すれば、問題点も解消しやすい
+</ul>
 
 ---
 
 ## Nginx+PHP-FPM
 <img src="../images/logo/nginx-1.svg" class="nginx-logo">
 
-- **適用シーン**: バランス重視。現在最も普及している構成。
-- **主なメリット**: 低メモリで安定性が高い。
-- **注意点**: 中程度の性能だが、実用上は十分。
-１台１台のリソース効率が最も良好だが、サーバー台数が増えがち
+<ul class="middle-list-text">
+  <li><strong>適用シーン</strong>: バランス重視。現在最も普及している構成。</li>
+  <li><strong>主なメリット</strong>: 低メモリで安定性が高い。</li>
+  <li><strong>注意点</strong>: 中程度の性能だが、実用上は十分。<br>
+  １台１台のリソース効率が最も良好だが、<br>PHP+Webサーバーでサーバ台数が増えがち</li>
+</ul>
 
 ---
 
 ## Swoole
 <img src="../images/logo/swoole.png" class="swoole-logo">
 
-- **適用シーン**: 高性能要求。リアルタイム性が重要なシステム
-- **主なメリット**: 最速レスポンス。コルーチンによる非同期処理
-- **注意点**: メモリ消費大・チューニング項目が多岐にわたる<br>（80項目以上）
-常駐プロセスのため、メモリリークに注意が必要
+<ul class="middle-list-text">
+  <li><strong>適用シーン</strong>: 高性能要求。リアルタイム性が重要なシステム</li>
+  <li><strong>主なメリット</strong>: 最速レスポンス。コルーチンによる非同期処理</li>
+  <li><strong>注意点</strong>: メモリ消費が大きい。<br>チューニング項目が多岐にわたる<br>
+  常駐プロセスのため、<br>メモリリークに注意が必要</li>
+</ul>
 
 ---
 
 ## FrankenPHP
 <img src="../images/logo/frankenphp.png" class="frankenphp-logo">
 
-- **適用シーン**: 簡単に高性能要求を実現したい。
-- **主なメリット**: 簡単にいい性能を取りやすい（Early Hints標準対応など）
-- **注意点**: 新しい技術のため情報が少ない
-実運用例も少ない
+<ul class="middle-list-text">
+  <li><strong>適用シーン</strong>: 簡単に高性能要求を実現したい。</li>
+  <li><strong>主なメリット</strong>: 簡単にいい性能を取りやすい<br>（Early Hints標準対応など）</li>
+  <li><strong>注意点</strong>: 新しい技術のため情報が少ない<br>
+  実運用例も少ない</li>
+</ul>
 
 ---
 
-皆さんの実行環境選択の助けになれば幸いです
+<p class="middle-text">
+皆さんの実行環境選択の助けになれば幸いです<br>
 ご清聴ありがとうございました
+</p>

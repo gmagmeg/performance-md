@@ -30,17 +30,10 @@ h1, h2 {
   font-weight: var(--header-font-weight);
   margin-bottom: 25px;
   padding-bottom: 10px;
+  font-size: 2.5rem;
+  border-bottom: 2px solid var(--main-color);
 }
 
-h1 {
-  font-size: 2.2em;
-  /* プレゼンテーションのデザインを維持するため、下線はピンクのままにします */
-  border-bottom: 4px solid #00338D;
-  display: inline-block;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-}
 
 h1.slide-section {
   font-size: 2.5em;
@@ -300,8 +293,8 @@ tr:hover {
 }
 
 .tech-item img {
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   margin-right: 20px;
   margin-bottom: 0;
   object-fit: contain;
@@ -380,12 +373,68 @@ h3 {
   font-size: 1.2em;
 }
 
+
+ol.table-content {
+  color: gray;
+} 
+
+.active-text {
+  font-size: 1.2em;
+  color: #000;
+  font-weight: bold;
+  border-bottom: #000 2px solid;
+}
+
 .font-size-large {
   font-size: 2em;
   font-weight: bold;
 }
 
 .normal-text {
+  font-size: 1.2em;
+  line-height: 1.2;
+}
+
+.middle-text {
   font-size: 1.5em;
   line-height: 1.5;
+}
+
+.middle-list-text {
+  font-size: 1.3em;
+  line-height: 1.8;
+}
+
+.inline-img-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inline-img {
+  display: inline-block;
+}
+
+.flex-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.image-list {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: start; 
+}
+
+.image-list li {
+  display: flex;         /* ① liをFlexコンテナにする */
+  align-items: center;   /* ② 画像と文章を垂直方向中央に揃える */
+  gap: 10px;             /* ③ 画像と文章の間に隙間を空ける */
+  
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
 }
