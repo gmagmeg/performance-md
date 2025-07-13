@@ -45,6 +45,11 @@ h2 {
   border-bottom: 2px solid #eee;
 }
 
+h3.icon-line::before {
+  content: "🔗";
+  font-size: 1.2em;
+}
+
 h3.test-icon::before {
   content: "🧪";
   font-size: 1.2em;

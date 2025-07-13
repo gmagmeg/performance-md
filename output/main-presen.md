@@ -198,33 +198,33 @@ PHPには2つのビルドバージョンがあります
 
 ---
 
-### ❌NTS（Non Thread Safe）
-
-<div class="columns">
-  <div class="no-border">
-    シングルスレッド環境向けに最適化されたビルド<br>
-    メモリ使用量は多くなりがち
-  </div>
-  <div class="inline-img-block">
-    <img src="../images/logo/apache_logo.png" width="80">
-    <img src="../images/logo/nginx-1.svg" width="150">
-  </div>
-</div>
-</div>
-
 ### 🧵ZTS（Zend Thread Safe）
 
 <div class="columns">
   <div class="no-border">
-    マルチスレッド環境で安全に動作する仕組みを持つ<br>
-    スレッド間でメモリ共有
+    マルチスレッド環境で異なるスレッドが<br>同一リソース（同一メモリや同一変数）にアクセスしても問題ないように、排他機構を持つ<br>
+    排他機構のオーバーヘッドで、そのまま扱うとNTSより処理速度が低下する
   </div>
   <div class="inline-img-block">
     <img src="../images/logo/swoole.png" width="180">
     <img src="../images/logo/frankenphp.png" width="180">
   </div>
 </div>
+
+### 🔗NTS（Non Thread Safe）
+
+<div class="columns">
+  <div class="no-border">
+    現在のほとんどの本番環境で採用されている<br>
+    シングルスレッド環境向けに最適化されたビルド<br>
+    排他機構を持たなくていい分、オーバーヘッドなし
+  </div>
+  <div class="inline-img-block">
+    <img src="../images/logo/apache_logo.png" width="80">
+    <img src="../images/logo/nginx-1.svg" width="150">
+  </div>
 </div>
+
 
 ---
 
@@ -270,27 +270,29 @@ PHPには2つのビルドバージョンがあります
 <div class="columns">
 <div>
 
-### ❌NTS構成
-- Laravel 12
-#### 対象実行環境
-- Apache + mod_php 
-- Nginx + php-fpm 
-
-</div>
-<div>
-
 ### 🧵ZTS構成
-- Laravel 12 + **Octane**
+- Laravel 12 + **Octane<br>（ZTS向けに最適化するライブラリ）**
 #### 対象実行環境
 - Swoole + Nginx (Laravel Octane)
 - FrankenPHP (Laravel Octane)
 
 </div>
+
+<div>
+
+### 🔗NTS構成
+- Laravel 12<br>&nbsp;
+#### 対象実行環境
+- Apache + mod_php 
+- Nginx + php-fpm 
+
+</div>
+
 </div>
 
 ---
 
-# 計測ツール
+## 計測ツール
 
 <div class="tech-stack">
   <div class="tech-item">
@@ -311,9 +313,8 @@ PHPには2つのビルドバージョンがあります
 </div>
 
 ### OpenTelemetryを選んだ理由
-- ZTS環境に対応したプロファイリングツールが少ない
-- 詳細: https://zenn.dev/booost/articles/a691d0fe7aeae6
-ZTS向けのツールが少な……
+- そもそもZTS環境に対応したプロファイリングツールが少ない
+詳細: https://zenn.dev/booost/articles/a691d0fe7aeae6
 
 ---
 
@@ -342,7 +343,7 @@ todo：
 <div class="columns ">
   <p class=""><img src="../images/chart-average-load-test-overview.png" width=500 /></p>
   <div class="three">
-    <p><span class="bold-text">ℹ️概要</span>　ユーザーが記事を投稿する<br>投稿した記事を複数のユーザーが閲覧しに来る</p>
+    <p><span class="bold-text">ℹ️概要</span><br>ユーザーが記事を投稿する<br>投稿した記事を複数のユーザーが閲覧しに来る</p>
     <p><span class="bold-text">🎯目的</span>　多数のユーザーによる同時アクセス時の レスポンス性能 と 安定性 を評価する</p>
   </div>
 </div>
@@ -353,7 +354,7 @@ todo：
 
 - **ユーザー行動**: 記事投稿 **1回**につき、記事閲覧が**10回**発生する
 - **負荷増加**: 開始**60秒**で最大**80ユーザー/秒**まで増加させる
-- **維持時間**: 最大負荷で**3分間**維持する
+- **維持時間**: 最大負荷で**3分間**維持する<br>4分間でおおよそ**6500回**のリクエストが発生
 
 <h3 class="check-icon"> 合格基準 (SLO)</h3>
 
@@ -363,7 +364,7 @@ todo：
 
 ---
 
-## データベース
+## アプリ概要データベース
 計：９テーブルを更新する
 
 <div class="columns">
