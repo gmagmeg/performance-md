@@ -361,7 +361,9 @@ ul.ol-large li {
   padding-left: 20px;
 }
 
-
+.li-style-none {
+  list-style: none;
+}
 
 /* 絵文字と見出しを同じ行に配置 */
 h3 {
@@ -381,4 +383,9 @@ h3 {
 .font-size-large {
   font-size: 2em;
   font-weight: bold;
+}
+
+.normal-text {
+  font-size: 1.5em;
+  line-height: 1.5;
 }

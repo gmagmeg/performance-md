@@ -543,12 +543,48 @@ PHPアプリケーションサーバー性能比較
 
 ---
 
-FrankenPHPに乗り換えるのが正解か？
-<img src="../images/thinking_face.png" />
+## パフォーマンスがいい方に換えるのが正解か？
+<div>&nbsp;<br>&nbsp;</div>
+<div>
+  <ul class="one font-size-large">
+    <li>Swoole</li>
+    <li>FrankenPHP</li>
+  </ul>
+  <div class="one">
+    <img src="../images/thinking_face.png" width="20%" />
+  </div>
+</div>
 
 ---
 
-<h1 class="slide-section"> 既存環境のパフォーマンスを<br>向上させる
+# アプリケーションの状態で考える
+
+## そもそも現状に課題がないないのなら<br>変える必要はない
+
+<span class="normal-text">Apache + mod_php環境であっても
+課題がないのなら変える必要はありません。
+Apacheもバリバリ更新中</span>
+
+---
+
+# アプリケーションの利用用途で考える
+
+## 読み取り主体か、書き込み主体か
+
+### アプリケーションが読み取り主体
+<span class="normal-text">Webサーバー・PHPのチューニングが効果的</span>
+
+### アプリケーションが書き込み主体
+<span class="normal-text">DBのチューニングが効果的</span>
+
+---
+
+### 大きな改善をしなくても<br>少しの改善で早くすることが出来ないのか？
+
+---
+
+
+<h1 class="slide-section"> 環境を向上させるTips３選
 
 ---
 
@@ -556,7 +592,6 @@ FrankenPHPに乗り換えるのが正解か？
 <li>1. opcacheを使う</li>
 <li>2. Apache, Nginx のearly hints(103)対応</li>
 <li>3. Symfonyのドキュメントを参照する</li>
-<li>4. 潜在能力を秘めたSwoole</li>
 </ul>
 
 ---
@@ -612,43 +647,7 @@ FrankenPHPに乗り換えるのが正解か？
 
 ---
 
-# 4. 潜在能力を秘めたSwoole
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<div class="columns">
-  <p class="one"><img src="../images/swoole-side-menu.png" width="60%" /></p>
-  <p class="one">
-細かなチューニング項目が満載<br>
-ざっくり80項目以上<br>
-まだまだ早くなる</p>
-</div>
-
-
----
-
 ## まとめ：PHP実行環境選択の指針
-
----
-
-# アプリケーションの状態で考える
-
-## そもそも現状に課題がないないのなら<br>変える必要はない
-
-今Apache + mod_php環境であっても
-課題がないのなら変える必要はありません。
-Apacheもバリバリ更新中
-
----
-
-# アプリケーションの利用用途で考える
-
-## 読み取り主体か、書き込み主体か
-
-### アプリケーションが読み取り主体
-Webサーバー・PHPのチューニングが効果的
-
-### アプリケーションが書き込み主体
-DBのチューニングが効果的
 
 ---
 
