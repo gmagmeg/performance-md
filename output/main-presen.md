@@ -9,9 +9,9 @@ theme: custom
 ## 目次
 
 1. 導入
-1. 諸々紹介（プロフィール・各環境・用語紹介）
-1. 計測ツール
-1. 負荷シナリオ１ - ストレステスト
+1. プロフィール・所属会社紹介
+1. 各環境・用語・計測ツール紹介
+1. 負荷シナリオ１ - アベレージロードテスト
 1. 負荷シナリオ２ - スパイクテスト
 1. 総評と選択指針
 1. 環境を向上させるTips３選
@@ -87,9 +87,9 @@ urlをここに貼る
 
 <ol class="table-content">
 <li>導入</li>
-<li class="active-text">諸々紹介（プロフィール・各環境・用語紹介）</li>
-<li>計測ツール</li>
-<li>負荷シナリオ１ - ストレステスト</li>
+<li class="active-text">プロフィール・所属会社紹介</li>
+<li>各環境・用語・計測ツール紹介</li>
+<li>負荷シナリオ１ - アベレージロードテスト</li>
 <li>負荷シナリオ２ - スパイクテスト</li>
 <li>総評と選択指針</li>
 <li>環境を向上させるTips３選</li>
@@ -99,79 +99,59 @@ urlをここに貼る
 
 ---
 
+todo
 プロフィール挟む
 これまで発表した内容
 
 ---
 
-
-## PHPビルドバージョンと実行環境の比較
-
-
-PHPには2つのビルドバージョンがあります
-それぞれ異なる実行環境に最適化されています
-
-1. NTS（Non Thread Safe）
-1. ZTS（Zend Thread Safe）
-
----
-
-## NTS（Non Thread Safe）
-
-シングルスレッド環境向けに最適化されたビルド
-スレッド間の排他制御が不要
-
-## ZTS（Zend Thread Safe）
-
-マルチスレッド環境で安全に動作する
-メモリやリソースへのアクセスを同期化する仕組みを持つ
+<ol class="table-content">
+<li>導入</li>
+<li>プロフィール・所属会社紹介</li>
+<li class="active-text">各環境・用語・計測ツール紹介</li>
+<li>負荷シナリオ１ - アベレージロードテスト</li>
+<li>負荷シナリオ２ - スパイクテスト</li>
+<li>総評と選択指針</li>
+<li>環境を向上させるTips３選</li>
+<li>まとめ</li>
+</ol>
 
 ---
 
-|  | NTS (Non Thread Safe) | ZTS (Zend Thread Safe) |
-| --- | --- | --- |
-| 対象環境 | シングルスレッド<br>（プロセスベース） | マルチスレッド環境 |
-| メモリ使用量 | プロセスごとに全体を複製<br>（非効率） | スレッド間でコード共有<br>（効率的） |
-| 適用環境 | <p><img src="../images/logo/apache_logo.png" width="80"></p><p><img src="../images/logo/nginx-1.svg" width="180"></p> | <p><img src="../images/logo/frankenphp.png" width="200"></p><p><img src="../images/logo/swoole.png" width="300"></p>|
+# 各環境紹介
 
----
+## Apache + mod_php 
 
-## 各実行環境の概要紹介
-
----
-
-# Apache + mod_php 
-
-- NTS（Non Thread Safe）、プロセスベース
+- NTS（Non Thread Safe） プロセスベース
 - ApacheのモジュールとしてPHPが直接組み込まれる形式
-- リクエストごとにプロセスが処理されるため、メモリ使用量が大きくなりがち
-- 設定がシンプルで歴史も長い。レガシーシステムで採用されている定番構成
+- リクエストごとにプロセスが処理されるため、<br>リクエスト数に伴ってメモリ使用量が大きくなりがち
+- 設定がシンプルで歴史も長い。<br>レガシーシステムで採用されている定番構成
 
 <img src="../images/logo/apache_logo.png" class="apache-logo">
 
 ---
 
-# Nginx + PHP-FPM
+## Nginx + PHP-FPM
 
 - NTS（Non Thread Safe）、マルチプロセス形式
 - NginxとPHP-FPM（FastCGI Process Manager）が別プロセスで動作する
-- プロセスプールによるリソース管理で、高トラフィック時の安定性とメモリ効率が優秀
+- プロセスプールによるリソース管理で、<br>高トラフィック時の安定性とメモリ効率が優秀
 
 <img src="../images/logo/nginx-1.svg" class="nginx-logo">
 
 ---
 
-# Nginx + Swoole
+## Nginx + Swoole
 
 - NTS版とZTS版の両方が存在（コルーチンはシングルスレッドで動作）
 - PHPの非同期I/O拡張で、コルーチンベースの並行処理を実現
-- HTTPサーバー機能を内蔵し、常駐プロセスでリクエストを処理するため高速
+- 常駐プロセスでリクエストを処理するため高速
 
 <img src="../images/logo/swoole.png" class="swoole-logo">
 
 ---
 
-# Swooleの補足事項
+## Swooleの補足事項
 
 Swoole自体組み込みWebサーバーを持っています
 が、餅は餅屋。Webサーバーを立てることを公式も推奨。
@@ -180,51 +160,77 @@ Swoole自体組み込みWebサーバーを持っています
 
 ---
 
-# FrankenPHP
+## FrankenPHP
 
 - ZTS（Zend Thread Safe）、マルチスレッド形式
 - Go言語で実装されたPHPのSAPIで、Caddyサーバーに統合されている
-- ワーカーモードによるアプリケーション常駐化で、起動オーバーヘッドを削減
+- ワーカーモードによるアプリケーション常駐化で<br>起動オーバーヘッドを削減
 
 <img src="../images/logo/frankenphp.png" class="frankenphp-logo">
 
 ---
 
-# FrankenPHPの補足事項
+## FrankenPHPの補足事項
 
-2025年5月に**PHP Foundation**からのオフィシャルサポートを受けることが決定。
-積極的にサポートされることが公式に発表されました。
+2025年5月　PHP Foundationからのオフィシャルサポートを受けることが決定
+<img src="../images/2025-05-15-frankenphp.png" width="60%" />
 
 [FrankenPHP Is Now Officially Supported by The PHP Foundation — The PHP Foundation — Supporting, Advancing, and Developing the PHP Language](https://thephp.foundation/blog/2025/05/15/frankenphp/)
 
 ---
 
-各実行環境の詳細はこちらのスライドで説明しています（宣伝）
+## より詳細な実行環境
+
+より詳しい詳細はこちらのスライドで説明しています（宣伝）
 https://www.docswell.com/s/1313108/ZP2QQ1-2025-03-21-123847
-<img src="../images/mae_slide.png" width="80%">
+<img src="../images/mae_slide.png" width="60%">
+
+---
+
+# 用語紹介
+
+1. NTS（Non Thread Safe）
+1. ZTS（Zend Thread Safe）
+
+PHPには2つのビルドバージョンがあります
+それぞれ異なる実行環境に最適化されています
 
 
 ---
 
-負荷試験環境の話をここから書いていく
+### ❌NTS（Non Thread Safe）
+
+<div class="columns">
+  <div class="no-border">
+    シングルスレッド環境向けに最適化されたビルド<br>
+    メモリ使用量は多くなりがち
+  </div>
+  <div class="inline-img-block">
+    <img src="../images/logo/apache_logo.png" width="80">
+    <img src="../images/logo/nginx-1.svg" width="150">
+  </div>
+</div>
+</div>
+
+### 🧵ZTS（Zend Thread Safe）
+
+<div class="columns">
+  <div class="no-border">
+    マルチスレッド環境で安全に動作する仕組みを持つ<br>
+    スレッド間でメモリ共有
+  </div>
+  <div class="inline-img-block">
+    <img src="../images/logo/swoole.png" width="180">
+    <img src="../images/logo/frankenphp.png" width="180">
+  </div>
+</div>
+</div>
 
 ---
 
-## ざっくり実行環境紹介
+# 計測環境・計測ツール紹介
 
-前提となる各PHP実行環境を紹介します
-
----
-
-# 詳細はこちら
-
-githubに挙げているので、そちらを参照してください
-
----
-
-# 各環境共通事項
-
-### アプリケーション基盤
+### 各環境共通アプリケーション基盤
 
 <div class="tech-stack">
   <div class="tech-item">
@@ -264,7 +270,7 @@ githubに挙げているので、そちらを参照してください
 <div class="columns">
 <div>
 
-### NTS（スレッド安全でない）構成
+### ❌NTS構成
 - Laravel 12
 #### 対象実行環境
 - Apache + mod_php 
@@ -273,7 +279,7 @@ githubに挙げているので、そちらを参照してください
 </div>
 <div>
 
-### ZTS（スレッド安全）構成
+### 🧵ZTS構成
 - Laravel 12 + **Octane**
 #### 対象実行環境
 - Swoole + Nginx (Laravel Octane)
@@ -281,17 +287,6 @@ githubに挙げているので、そちらを参照してください
 
 </div>
 </div>
-
----
-
-# 比較検証のポイント
-
-1. **レスポンス時間**: 同一負荷での応答速度比較
-2. **スループット**: 単位時間あたりの処理能力
-3. **メモリ使用量**: 各構成でのメモリ効率
-4. **CPU使用率**: 処理負荷によるCPU消費
-5. **同時接続数**: 最大同時接続処理能力
-6. **エラー率**: 高負荷時のエラー発生率
 
 ---
 
@@ -315,28 +310,58 @@ githubに挙げているので、そちらを参照してください
   </div>
 </div>
 
-
 ### OpenTelemetryを選んだ理由
 - ZTS環境に対応したプロファイリングツールが少ない
 - 詳細: https://zenn.dev/booost/articles/a691d0fe7aeae6
+ZTS向けのツールが少な……
 
 ---
 
-# 計測しない項目
+### 詳細はこちら
 
-**ブラウザレンダリング**
-- WebAPIサーバーとして振る舞うことが多いため
-
----
-
-# テストシナリオ
-
-**記事投稿 + 記事取得**
-- 実際のWebアプリケーションを想定
-- CRUD操作の性能を検証
+githubに挙げているので、そちらを参照してください
+todo：
 
 ---
 
+<ol class="table-content">
+<li>導入</li>
+<li>プロフィール・所属会社紹介</li>
+<li>各環境・用語・計測ツール紹介</li>
+<li class="active-text">負荷シナリオ１ - アベレージロードテスト</li>
+<li>負荷シナリオ２ - スパイクテスト</li>
+<li>総評と選択指針</li>
+<li>環境を向上させるTips３選</li>
+<li>まとめ</li>
+</ol>
+
+---
+
+## 負荷試験シナリオ１ - アベレージロードテスト
+
+<div class="columns ">
+  <p class=""><img src="../images/chart-average-load-test-overview.png" width=500 /></p>
+  <div class="three">
+    <p><span class="bold-text">ℹ️概要</span>　ユーザーが記事を投稿する<br>投稿した記事を複数のユーザーが閲覧しに来る</p>
+    <p><span class="bold-text">🎯目的</span>　多数のユーザーによる同時アクセス時の レスポンス性能 と 安定性 を評価する</p>
+  </div>
+</div>
+
+---
+
+<h3 class="test-icon">試験概要</h3>
+
+- **ユーザー行動**: 記事投稿 **1回**につき、記事閲覧が**10回**発生する
+- **負荷増加**: 開始**60秒**で最大**80ユーザー/秒**まで増加させる
+- **維持時間**: 最大負荷で**3分間**維持する
+
+<h3 class="check-icon"> 合格基準 (SLO)</h3>
+
+- **記事投稿** (P90): **3秒**以内
+- **記事閲覧** (P90): **1秒**以内
+- **エラーレート**: **0.1%** 未満
+
+---
 
 ## データベース
 計：９テーブルを更新する
@@ -360,38 +385,6 @@ githubに挙げているので、そちらを参照してください
 
 </div>
 </div>
-
----
-
-
-## PHP実行環境パフォーマンス比較
-
-4つの実行環境でパフォーマンス測定を実施
-
----
-
-## 負荷試験シナリオ１
-
-### 概要
-ユーザーが記事を投稿して、
-投稿した記事を複数のユーザーが閲覧しに来る想定
-
-### 目的
-多数のユーザーによる同時アクセス時の**レスポンス性能**と**安定性**を評価する
-
----
-
-### 試験概要
-
-- **ユーザー行動**: 記事投稿 **1回**につき、記事閲覧が**10回**発生する
-- **負荷増加**: 開始**60秒**で最大**80ユーザー/秒**まで増加させる
-- **維持時間**: 最大負荷で**3分間**維持する
-
-### 合格基準 (SLO)
-
-- **記事投稿** (P90): **3秒**以内
-- **記事閲覧** (P90): **1秒**以内
-- **エラーレート**: **0.1%** 未満
 
 ---
 
@@ -693,7 +686,7 @@ Apacheもバリバリ更新中</span>
 
 ---
 
-# 1. opcacheを使う
+## 1. opcacheを使う
 
 ### 再掲
 ```
@@ -705,8 +698,7 @@ Apacheもバリバリ更新中</span>
 ---
 
 
-# 2. Apache, Nginxのearly hints(103)対応
-<p>&nbsp;</p>
+## 2. Apache, Nginxのearly hints(103)対応
 <div class="columns">
   <p class="one"><img src="../images/logo/nginx-1.svg" width=50% /></p>
   <p class="three">ver：1.29.0<br>2025年6月24日リリース</p>
@@ -733,9 +725,7 @@ Apacheもバリバリ更新中</span>
 
 ---
 
-# 3. Symfonyのドキュメントを参照する
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+## 3. Symfonyのドキュメントを参照する
 <img src="../images/logo/symphony-sample.png" width="70%" />
 
 ---

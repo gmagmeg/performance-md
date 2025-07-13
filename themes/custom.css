@@ -8,7 +8,7 @@
 :root {
   --main-color: #00338D; /* booost様のブランドカラー（青） */
   --accent-color: #e91e63; /* プレゼンテーションのデザインで使用されるアクセント（ピンク） */
-  --brand-green: #27DB84; /* booost様のブランドカラー（緑） */
+  --brand-green: #2f794e; /* booost様のブランドカラー（緑） */
   --text-color: #000000; /* 基本のテキストカラー（黒） */
   --text-color-inverse: #FFFFFF; /* 反転色のテキストカラー（白） */
   --bg-color-inverse: #00338D; /* 反転色の背景カラー（ブランドの青） */
@@ -34,7 +34,6 @@ h1, h2 {
   border-bottom: 2px solid var(--main-color);
 }
 
-
 h1.slide-section {
   font-size: 2.5em;
   border-bottom: none;
@@ -46,11 +45,22 @@ h2 {
   border-bottom: 2px solid #eee;
 }
 
+h3.test-icon::before {
+  content: "🧪";
+  font-size: 1.2em;
+}
+
+h3.check-icon::before {
+  content: "✅";
+  font-size: 1.2em;
+}
+
 /* リンク(a) のスタイルには、ブランドの緑色を適用します。 */
 a {
   color: var(--brand-green);
-  text-decoration: none;
   font-weight: 600;
+  font-weight: normal;
+  text-decoration: underline;
 }
 
 a:hover {
@@ -246,27 +256,33 @@ tr:hover {
   align-items: center;
 }
 
-.columns p {
-  margin: 0;
-  font-size: 1.1em;
-  line-height: 1.6;
-}
-
 .columns > .one {
   flex: 1;
+  font-size: 1.1em;
 }
 
 .columns > .three {
   flex: 3;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
-.columns > div {
+.columns > .one,
+.columns > .three {
+  margin: 0;
+  padding: 0;
+}
+
+.columns > div.border {
   flex: 1;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
+}
+
+.columns > .no-border {
+  flex: 1;
+  padding: 20px;
 }
 
 /* 技術スタック表示用のレイアウト */
@@ -373,6 +389,10 @@ h3 {
   font-size: 1.2em;
 }
 
+.bold-text {
+  font-weight: bold;
+}
+
 
 ol.table-content {
   color: gray;
@@ -408,7 +428,7 @@ ol.table-content {
 .inline-img-block {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
 .inline-img {
@@ -430,10 +450,10 @@ ol.table-content {
 }
 
 .image-list li {
-  display: flex;         /* ① liをFlexコンテナにする */
-  align-items: center;   /* ② 画像と文章を垂直方向中央に揃える */
-  gap: 10px;             /* ③ 画像と文章の間に隙間を空ける */
-  
+  display: flex;
+  align-items: center; 
+  gap: 10px;
+
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #eee;
