@@ -1,39 +1,9 @@
-# 実行環境特性まとめ
-
-## Apache+PHP
-<img src="../images/logo/apache_logo.png" class="apache-logo">
-
-- **適用シーン**: 既存継続運用。情報が豊富
-- **主なメリット**: 設定が簡単で、安定性している
-- **注意点**: １台で高負荷を受けると性能が劣化する
-LBを設置して複数サーバーに分散すれば、問題点も解消しやすい
-
+---
+marp: true
+theme: custom
 ---
 
-## Nginx+PHP-FPM
-<img src="../images/logo/nginx-1.svg" class="nginx-logo">
+<!-- paginate: true -->
 
-- **適用シーン**: バランス重視。現在最も普及している構成。
-- **主なメリット**: 低メモリで安定性が高い。
-- **注意点**: 中程度の性能だが、実用上は十分。
-１台１台のリソース効率が最も良好だが、サーバー台数が増えがち
-
----
-
-## Swoole
-<img src="../images/logo/swoole.png" class="swoole-logo">
-
-- **適用シーン**: 高性能要求。リアルタイム性が重要なシステム
-- **主なメリット**: 最速レスポンス。コルーチンによる非同期処理
-- **注意点**: メモリ消費大・チューニング項目が多岐にわたる（80項目以上）
-常駐プロセスのため、メモリリークに注意が必要
-
----
-
-## FrankenPHP
-<img src="../images/logo/frankenphp.png" class="frankenphp-logo">
-
-- **適用シーン**: 簡単に高性能要求を実現したい。
-- **主なメリット**: 簡単にいい性能を取りやすい（Early Hints標準対応など）
-- **注意点**: 新しい技術のため情報が少ない
-実運用例も少ない
+FrankenPHPに乗り換えるのが正解か？
+<img src="../images/thinking_face.png" />

@@ -544,7 +544,7 @@ PHPアプリケーションサーバー性能比較
 ---
 
 FrankenPHPに乗り換えるのが正解か？
-考える顔のアイコン挟む
+<img src="../images/thinking_face.png" />
 
 ---
 
@@ -555,7 +555,8 @@ FrankenPHPに乗り換えるのが正解か？
 <ul class="ol-large">
 <li>1. opcacheを使う</li>
 <li>2. Apache, Nginx のearly hints(103)対応</li>
-<li>3. 潜在能力を秘めたSwoole</li>
+<li>3. Symfonyのドキュメントを参照する</li>
+<li>4. 潜在能力を秘めたSwoole</li>
 </ul>
 
 ---
@@ -576,39 +577,52 @@ FrankenPHPに乗り換えるのが正解か？
 <p>&nbsp;</p>
 <div class="columns">
   <p class="one"><img src="../images/logo/nginx-1.svg" width=50% /></p>
-  <p class="three">ver：1.29.0<br>2025年6月24日リリース分</p>
+  <p class="three">ver：1.29.0<br>2025年6月24日リリース</p>
 </div>
 
 <div class="columns">
   <p class="one"><img src="../images/logo/apache_logo.png" width=30% /></p>
-  <p class="three">モジュール：HTTP/2<br>https://httpd.apache.org/docs/current/howto/http2.html#page-header</p>
+  <p class="three">モジュール：HTTP/2<br>https://httpd.apache.org/docs/current/howto/http2.html<br>#page-header</p>
 </div>
 
-
-
----
-
-Frankenphp
-early hints(103)　あり　無し
+このプレゼン中には間に合いませんでした...
 
 ---
 
-FrankenPHPは何もしなくても対応済み
+### FrankenPHPの対応状況
 
-NginxとApacheは間に合わず
-間に合わず…
-
----
-
-# 潜在能力を秘めたSwoole
-
-細かなチューニング項目が満載
-ざっくり80項目以上
-まだまだ早くなる
+<p>&nbsp;</p>
+<div class="columns">
+  <p class="one"><img src="../images/logo/frankenphp.png" /></p>
+  <p class="three">early hints(103)は組み込み済み<br>
+  PHPのコードに headers_send(103); と書くだけでOK<br>とても楽
+  </p>
+</div>
 
 ---
 
-グラフ挿入
+# 3. Symfonyのドキュメントを参照する
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="columns">
+  <p class="three"><img src="../images/logo/symphony-sample.png" width="70%" /></p>
+  <p class="one"><img src="../images/logo/symphony.png" />に関わらず役立つ情報がたくさん</p>
+</div>
+<a href="https://symfony.com/doc/current/performance.html">https://symfony.com/doc/current/performance.html</a> 
+
+---
+
+# 4. 潜在能力を秘めたSwoole
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="columns">
+  <p class="one"><img src="../images/swoole-side-menu.png" width="60%" /></p>
+  <p class="one">
+細かなチューニング項目が満載<br>
+ざっくり80項目以上<br>
+まだまだ早くなる</p>
+</div>
+
 
 ---
 
@@ -666,7 +680,7 @@ LBを設置して複数サーバーに分散すれば、問題点も解消しや
 
 - **適用シーン**: 高性能要求。リアルタイム性が重要なシステム
 - **主なメリット**: 最速レスポンス。コルーチンによる非同期処理
-- **注意点**: メモリ消費大・チューニング項目が多岐にわたる（80項目以上）
+- **注意点**: メモリ消費大・チューニング項目が多岐にわたる<br>（80項目以上）
 常駐プロセスのため、メモリリークに注意が必要
 
 ---
@@ -683,5 +697,3 @@ LBを設置して複数サーバーに分散すれば、問題点も解消しや
 
 皆さんの実行環境選択の助けになれば幸いです
 ご清聴ありがとうございました
-
----
