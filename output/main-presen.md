@@ -448,20 +448,29 @@ todo：
 <h2> <span class="inline-img">📢</span> 計測結果総評</h2>
 
 ### リソース効率
-- 全環境でエラー発生なし（**100%安定性**）
-- **CPU効率**: FrankenPHP > Swoole > 従来構成
-- **メモリ効率**: Nginx+PHP > FrankenPHP > Apache > Swoole
+
+<ul class="normal-text">
+<li> 全環境でエラー発生なし（100%安定性） </li>
+<li> CPU効率: FrankenPHP > Swoole > 従来構成 </li>
+<li> メモリ効率: Nginx+PHP > FrankenPHP > Apache > Swoole </li>
+</ul>
 
 **補足**
-- Nginxはサーバーとphp-fpmでメモリが分散
-- Swooleはメモリにプロセスを常駐させるため、他と比べて消費率高
+<ul class="normal-text">
+<li> Nginxはサーバーとphp-fpmでメモリが分散</li>
+<li> Swooleはメモリにプロセスを常駐させるため、他と比べて消費率高 </li>
+</ul>
 
 ---
 
 ### パフォーマンス面
-- **FrankenPHP**が総合的に最優秀（レスポンス・CPU効率）
-- **Swoole**もFrankenPHPに匹敵する高性能
-- 従来構成比で**30-40%の性能向上**を実現
+
+<ul class="middle-text">
+<li> FrankenPHP・Swooleが総合的に最優秀<br>（レスポンス・CPU効率） </li>
+<li> Apache, Nginxと比較で<br><span class="good-value">⇧30-40%</span>の性能向上を実現 </li>
+</ul>
+
+---
 
 とはいえ…
 
@@ -470,7 +479,8 @@ todo：
 | Apache+PHP | 36.91ms | 27.99ms | 28.49 RPS |
 | **FrankenPHP** | **25.82ms** | **19.51ms** | **28.65 RPS** |
 
-ここまで見て意外と大きな差がないように見えたのではないでしょうか
+<p class="normal-text">ここまで見て意外と大きな差がないように<br>見えたのではないでしょうか</p>
+
 
 ---
 

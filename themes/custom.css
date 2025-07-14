@@ -217,6 +217,13 @@ td span.good-value {
   text-decoration: underline;
 }
 
+.good-value { 
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 1.3em;
+  text-decoration: underline;
+}
+
 td span.good-value::before {
   content: "⭕";
   color: var(--accent-color);
