@@ -296,7 +296,7 @@ PHPには2つのビルドバージョンがあります
 
 <div class="tech-stack">
   <div class="tech-item">
-    <img src="../images/logo/K6-logo.svg.png" alt="PHP">
+    <img src="../images/logo/K6-logo.svg.png" alt="k6">
     <div class="tech-info">
       <div class="tech-name">k6</div>
       <div class="tech-version">負荷検証</div>
@@ -364,10 +364,14 @@ todo：
 
 ---
 
-## アプリ概要データベース
-計：９テーブルを更新する
+## アプリ概要
+
+<img class="inline-img" src="../images/logo/K6-logo.svg.png" alt="k6" width="100"> から
+`api/read-weight` にPOST・GETリクエスト
 
 <div class="columns">
+
+計：９テーブルを更新＆読み取る
 <div>
 
 1. usersd
@@ -389,58 +393,59 @@ todo：
 
 ---
 
-## 計測結果発表
+<h1> <span class="inline-img">📢</span> 計測結果発表</h1>
 
 ---
 
-どの環境もエラーは無し！
+<p class="big-text">
+どの環境もエラーは無し！<br />
 素晴らしい！
 👏
+</p>
 
 ---
 
-## リソース使用量比較
+<h2><span class="inline-img">🖥️</span> リソース使用量比較</h2>
 
-CPU使用率とメモリ使用量の比較
+<span class="normal-text">CPU使用率とメモリ使用量の比較</span>
 
-| 環境 | 平均CPU使用率 | 平均メモリ使用量 | CPU効率 | メモリ効率 |
-| --- | --- | --- | --- | --- |
-| Apache+PHP | 35.77% | 360.08MiB | 要改善 | 普通 |
-| Nginx+PHP | 34.32% | **88.75MiB** | 普通 | **最優秀** |
-| **Swoole** | **32.03%** | 962.9MiB | **良好** | 要注意 |
-| **FrankenPHP** | **20.47%** | 288.4MiB | **最優秀** | 良好 |
+| 環境 | 平均CPU使用率 | 平均メモリ使用量 |
+| --- | --- | --- | 
+| Apache+PHP | 35.77% | 360.08MiB |
+| Nginx+PHP | 34.32% |  <span class="good-value">88.75MiB</span> |
+| Swoole | 32.03% | 962.9MiB |
+| FrankenPHP |  <span class="good-value">20.47%</span> | 288.4MiB |
+
 
 ---
 
-## PHP実行環境比較結果
+<h2><span class="inline-img">▶️</span> PHP実行環境比較結果</h2>
+
+<span class="normal-text">レスポンス時間とスループットの比較</span>
 
 | 環境 | P95レスポンス | P90レスポンス | スループット |
 | --- | --- | --- | --- |
 | Apache+PHP | 36.91ms | 27.99ms | 28.49 RPS |
 | Nginx+PHP | 33.77ms | 25.54ms | 28.06 RPS |
-| Swoole | 27.15ms | 20.51ms | 28.58 RPS |
-| **FrankenPHP** | **25.82ms** | **19.51ms** | **28.65 RPS** |
-
-<!-- FrankenPHPが最高のレスポンス性能、Nginx+PHPが最少メモリ使用量 -->
+| Swoole | <span class="good-value">27.15ms</span> | <span class="good-value">20.51ms</span> | 28.58 RPS |
+| FrankenPHP | <span class="good-value">25.82ms</span> | <span class="good-value">19.51ms</span> | <span class="good-value">28.65 RPS</span> |
 
 ---
 
-## レスポンス時間詳細比較
+<h2><span class="inline-img">➡️</span> レスポンス時間詳細比較</h2>
 
-各処理別のレスポンス時間（P90）
+<span class="normal-text">各処理別のレスポンス時間（P90）</span>
 
-| 環境 | POST処理<br>（記事作成） | GET処理<br>（記事取得） |
+| 環境 | POST処理（記事作成） | GET処理（記事取得） |
 | --- | --- | --- |
 | Apache+PHP | 49.61ms | 22.45ms |
 | Nginx+PHP | 50.53ms | 20.69ms |
-| **Swoole** | **45.64ms** | **16.38ms** |
-| **FrankenPHP** | **45.86ms** | **15.48ms** |
+| Swoole | <span class="good-value">45.64ms</span> | <span class="good-value">16.38ms</span> |
+| FrankenPHP | <span class="good-value">45.86ms</span> | <span class="good-value">15.48ms</span> |
 
-<!-- FrankenPHP、Swooleが高速。従来環境より30-40%高速 -->
 
 ---
-
-## 計測結果総評
+<h2> <span class="inline-img">📢</span> 計測結果総評</h2>
 
 ### リソース効率
 - 全環境でエラー発生なし（**100%安定性**）

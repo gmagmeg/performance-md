@@ -45,13 +45,9 @@ h2 {
   border-bottom: 2px solid #eee;
 }
 
-h3.icon-line::before {
-  content: "🔗";
-  font-size: 1.2em;
-}
 
-h3.test-icon::before {
-  content: "🧪";
+h3.icon-cpu::before {
+  content: "🖥️";
   font-size: 1.2em;
 }
 
@@ -183,8 +179,8 @@ section.center p, section.center ul, section.center ol {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 1em;
+  margin-top: 1.2em;
+  font-size: 1.2em;
 }
 
 th {
@@ -202,6 +198,7 @@ td {
   text-align: left;
   border: 1px solid #ddd;
   vertical-align: top;
+  text-align: end;
 }
 
 td:first-child {
@@ -210,6 +207,19 @@ td:first-child {
   font-weight: bold;
   font-size: 1.1em;
   text-align: center;
+}
+
+/* 良い数値（パーセンテージやメモリ使用量）を青の太字で表示 */
+td span.good-value { 
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 1.3em;
+  text-decoration: underline;
+}
+
+td span.good-value::before {
+  content: "⭕";
+  color: var(--accent-color);
 }
 
 tr:nth-child(even) {
@@ -425,6 +435,11 @@ ol.table-content {
   line-height: 1.5;
 }
 
+.big-text {
+  font-size: 2em;
+  line-height: 1.5;
+}
+
 .middle-list-text {
   font-size: 1.3em;
   line-height: 1.8;
@@ -461,5 +476,5 @@ ol.table-content {
 
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}
+  border-bottom: 1px solid #eee;}
+
