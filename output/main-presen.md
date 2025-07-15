@@ -199,10 +199,9 @@ https://www.docswell.com/s/1313108/ZP2QQ1-2025-03-21-123847
 PHPには2つのビルドバージョンがあります
 それぞれ異なる実行環境に最適化されています
 
-
 ---
 
-### 🧵ZTS（Zend Thread Safe）
+## 🧵ZTS（Zend Thread Safe）
 
 <div class="columns">
   <div class="no-border">
@@ -215,7 +214,9 @@ PHPには2つのビルドバージョンがあります
   </div>
 </div>
 
-### 🔗NTS（Non Thread Safe）
+---
+
+## 🔗NTS（Non Thread Safe）
 
 <div class="columns">
   <div class="no-border">
@@ -373,9 +374,13 @@ https://github.com/gmagmeg/performance-comparison
 <img class="inline-img" src="../images/logo/K6-logo.svg.png" alt="k6" width="100"> から
 `api/read-weight` にPOST・GETリクエスト
 
-<div class="columns">
+**計：９テーブルに書き込み＆読み取る**
 
-計：９テーブルに書き込み<br>　　＆読み取る
+---
+
+## 対象テーブル
+
+<div class="columns">
 <div>
 
 1. users
@@ -539,7 +544,7 @@ https://github.com/gmagmeg/performance-comparison
 
 ---
 
-## ⇔ Apache+mod_php<br>　 OPcacheの有無で比較
+## ⇔ Apache+mod_php OPcache比較 - リソース使用量
 
 <span class="middle-text ">同じ環境でもこれだけの違いが出ます</span>
 
@@ -552,7 +557,7 @@ https://github.com/gmagmeg/performance-comparison
 
 ---
 
-## ⇔ Apache+mod_php<br>　 OPcacheの有無で比較
+## ⇔ Apache+mod_php OPcache比較 - レスポンス性能
 
 | 項目 | OPcache無し | OPcache有り |
 | --- | --- | --- | 
