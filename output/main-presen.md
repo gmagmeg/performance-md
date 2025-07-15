@@ -101,9 +101,11 @@ theme: custom
 
 ---
 
-todo
-プロフィール挟む
-これまで発表した内容
+## プロフィール・所属会社紹介
+
+**発表者**: [お名前]
+**所属**: [会社名・部署名]
+**これまでの発表内容**: [過去の発表実績]
 
 ---
 
@@ -322,8 +324,8 @@ PHPには2つのビルドバージョンがあります
 
 ### 詳細はこちら
 
-githubに挙げているので、そちらを参照してください
-todo：
+詳細なコードと設定はGitHubリポジトリで公開しています。
+https://github.com/gmagmeg/performance-comparison
 
 ---
 
@@ -376,7 +378,7 @@ todo：
 計：９テーブルに書き込み<br>　　＆読み取る
 <div>
 
-1. usersd
+1. users
 2. posts
 3. categories
 4. tags
@@ -541,10 +543,10 @@ todo：
 
 <span class="middle-text ">同じ環境でもこれだけの違いが出ます</span>
 
-| 項目 | OPmcache無し | OPcache有り |
+| 項目 | OPcache無し | OPcache有り |
 | --- | --- | --- | 
 | **平均使用CPU** | 290% |<span class="middle-text">48%</span>（<span class="good-minus-value">83%削減</span>）|
-| **平均使用メモリ** | 2.175 <span class="middle-text">GiB</span> |<span class="middle-text">462.1 **MB**</span>（<span class="good-minus-value">79%削減</span>）|
+| **平均使用メモリ** | 2.175 GiB |<span class="middle-text">462.1 MB</span>（<span class="good-minus-value">79%削減</span>）|
 
 （CPUコア４つのため、100%越え）
 
@@ -552,7 +554,7 @@ todo：
 
 ## ⇔ Apache+mod_php<br>　 OPcacheの有無で比較
 
-| 項目 | OPmcache無し | OPcache有り |
+| 項目 | OPcache無し | OPcache有り |
 | --- | --- | --- | 
 | **平均レスポンス** | 90.31ms |<span class="middle-text">18.46ms</span>（<span class="good-minus-value">80%改善</span>）|
 | **P90レスポンス** | 119.35ms |<span class="middle-text">27.99ms</span>（<span class="good-minus-value">77%改善</span>）| 
@@ -631,7 +633,7 @@ opcacheの話は一旦おしまい。<br>
 <div>
 計：９テーブルのデータを読み取り、JSONを返す<br><br>
 
-1. usersd
+1. users
 2. posts
 3. categories
 4. tags
@@ -714,7 +716,7 @@ opcacheの話は一旦おしまい。<br>
 ### ➡️通常負荷時（シナリオ1）
 - 全環境で安定動作、差は僅差
 - 全環境でOPcacheの効果が絶大（80%の性能向上）
-- FrankenPHP・Swoole+Nignxが総合的に最優秀
+- FrankenPHP・Swoole+Nginxが総合的に最優秀
 
 ### ⚡高負荷時（シナリオ2）
 - 環境間の性能差が顕著に現れる
@@ -843,7 +845,7 @@ Apache, Nginxも直近で対応済み
 
 <ul class="middle-text">
   <li>OPcacheの最適な設定値</li>
-  <li>compsoer の最適なinstall時の設定<br>etc・・・</li>
+  <li>composer の最適なinstall時の設定<br>など</li>
 </ul>
 
 ---
@@ -873,7 +875,7 @@ Apache + mod_phpやNginx + PHP-FPMでも<br>
 
 <ul class="middle-list-text">
   <li><strong>適用シーン</strong>: 既存継続運用。情報が豊富</li>
-  <li><strong>主なメリット</strong>: 設定が簡単で、安定性している</li>
+  <li><strong>主なメリット</strong>: 設定が簡単で、安定性が高い</li>
   <li><strong>注意点</strong>: １台で高負荷を受けると性能が劣化する<br>
   LBを設置してサーバー分散すれば、問題点も解消しやすい
 </ul>
