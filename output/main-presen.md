@@ -459,10 +459,10 @@ https://github.com/gmagmeg/performance-comparison
 
 | 環境 | 平均CPU使用率 | 平均メモリ使用量 |
 | --- | --- | --- | 
-| Apache+mod_php | 35.77% | 360.08MiB |
-| Nginx+PHP-FPM | 34.32% |  <span class="good-value">190.75MiB</span> |
-| Nginx+Swoole | 32.03% | 962.9MiB |
-| FrankenPHP |  <span class="good-value">20.47%</span> | 288.4MiB |
+| Apache+mod_php | 35.77% | 360.08 MB |
+| Nginx+PHP-FPM | 34.32% |  <span class="good-value">190.75 MB</span> |
+| Nginx+Swoole | 32.03% | 962.90 MB |
+| FrankenPHP |  <span class="good-value">20.47%</span> | 288.40 MB |
 
 * swooleとphp-fpmはNginxサーバーとの合算値
 
@@ -474,10 +474,10 @@ https://github.com/gmagmeg/performance-comparison
 
 | 環境 | P95レスポンス | P90レスポンス | スループット |
 | --- | --- | --- | --- |
-| Apache+mod_php | 36.91ms | 27.99ms | 28.49 RPS |
-| Nginx+PHP-FPM | 33.77ms | 25.54ms | 28.06 RPS |
-| Nginx+Swoole | <span class="good-value">27.15ms</span> | <span class="good-value">20.51ms</span> | <span class="good-value">28.58 RPS</span> |
-| FrankenPHP | <span class="good-value">25.82ms</span> | <span class="good-value">19.51ms</span> | <span class="good-value">28.65 RPS</span> |
+| Apache+mod_php | 36.91 ms | 27.99 ms | 28.49 RPS |
+| Nginx+PHP-FPM | 33.77 ms | 25.54 ms | 28.06 RPS |
+| Nginx+Swoole | <span class="good-value">27.15 ms</span> | <span class="good-value">20.51 ms</span> | <span class="good-value">28.58 RPS</span> |
+| FrankenPHP | <span class="good-value">25.82 ms</span> | <span class="good-value">19.51 ms</span> | <span class="good-value">28.65 RPS</span> |
 
 ---
 
@@ -487,10 +487,10 @@ https://github.com/gmagmeg/performance-comparison
 
 | 環境 | POST処理（記事作成） | GET処理（記事取得） |
 | --- | --- | --- |
-| Apache+mod_php | 49.61ms | 22.45ms |
-| Nginx+PHP-FPM | 50.53ms | 20.69ms |
-| Nginx+Swoole | <span class="good-value">45.64ms</span> | <span class="good-value">16.38ms</span> |
-| FrankenPHP | <span class="good-value">45.86ms</span> | <span class="good-value">15.48ms</span> |
+| Apache+mod_php | 49.61 ms | 22.45 ms |
+| Nginx+PHP-FPM | 50.53 ms | 20.69 ms |
+| Nginx+Swoole | <span class="good-value">45.64 ms</span> | <span class="good-value">16.38 ms</span> |
+| FrankenPHP | <span class="good-value">45.86 ms</span> | <span class="good-value">15.48 ms</span> |
 
 
 ---
@@ -524,9 +524,9 @@ https://github.com/gmagmeg/performance-comparison
 
 | 環境 | P95レスポンス | P90レスポンス | スループット |
 | --- | --- | --- | --- |
-| Apache+mod_php | 36.91ms | 27.99ms | 28.49 RPS |
-| **FrankenPHP** | **25.82ms** | **19.51ms** | **28.65 RPS** |
-| 差 | **<span class="diff">-11.09ms</span>** | **<span class="diff">-8.48ms</span>** | **<span class="diff">+0.16 RPS</span>** |
+| Apache+mod_php | 36.91 ms | 27.99 ms | 28.49 RPS |
+| **FrankenPHP** | **25.82 ms** | **19.51 ms** | **28.65 RPS** |
+| 差 | **<span class="diff">-11.09 ms</span>** | **<span class="diff">-8.48 ms</span>** | **<span class="diff">+0.16 RPS</span>** |
 
 <p class="normal-text">ここまで見て差はあれど、<br>意外と大差が付かなかったようにも見えたのではないでしょうか</p>
 
@@ -546,7 +546,7 @@ https://github.com/gmagmeg/performance-comparison
 | 項目 | OPcache無し | OPcache有り |
 | --- | --- | --- | 
 | **平均使用CPU** | 290% |<span class="middle-text">48%</span>（<span class="good-minus-value">83%削減</span>）|
-| **平均使用メモリ** | 2.175 GiB |<span class="middle-text">462.1 MB</span>（<span class="good-minus-value">79%削減</span>）|
+| **平均使用メモリ** | 2.18 GiB |<span class="middle-text">462.10 MB</span>（<span class="good-minus-value">79%削減</span>）|
 
 （CPUコア４つのため、100%越え）
 
@@ -556,9 +556,9 @@ https://github.com/gmagmeg/performance-comparison
 
 | 項目 | OPcache無し | OPcache有り |
 | --- | --- | --- | 
-| **平均レスポンス** | 90.31ms |<span class="middle-text">18.46ms</span>（<span class="good-minus-value">80%改善</span>）|
-| **P90レスポンス** | 119.35ms |<span class="middle-text">27.99ms</span>（<span class="good-minus-value">77%改善</span>）| 
-| **P95レスポンス** | 130.59ms |<span class="middle-text">36.91ms</span>（<span class="good-minus-value">72%改善</span>）| 
+| **平均レスポンス** | 90.31 ms |<span class="middle-text">18.46 ms</span>（<span class="good-minus-value">80%改善</span>）|
+| **P90レスポンス** | 119.35 ms |<span class="middle-text">27.99 ms</span>（<span class="good-minus-value">77%改善</span>）| 
+| **P95レスポンス** | 130.59 ms |<span class="middle-text">36.91 ms</span>（<span class="good-minus-value">72%改善</span>）| 
 
 
 ---
@@ -676,10 +676,10 @@ opcacheの話は一旦おしまい。<br>
 
 | サーバー | p(90) | p(95) | スループット | エラー率 |
 |---------|-------|-------|-------------|---------|
-| Apache+mod_php | 68.92ms | 1.68s | 35.9 req/s | <span class="attention">×2.19%</span> |
-| Nginx+FPM | 22.15ms | 24.72ms | 38.1 req/s | <span class="good-value-small">0.00%</span> |
-| Swoole | <span class="good-value-small">18.38ms</span> | <span class="good-value-small">21.33ms</span> | <span class="good-value-small">39.1 req/s</span> | <span class="good-value-small">0.00%</span> |
-| FrankenPHP | <span class="good-value-small">18.9ms</span> | <span class="good-value-small">21.44ms</span> | <span class="good-value-small">39.5 req/s</span> | <span class="good-value-small">0.00%</span> |
+| Apache+mod_php | 68.92 ms | 1.68 s | 35.90 RPS | <span class="attention">×2.19%</span> |
+| Nginx+FPM | 22.15 ms | 24.72 ms | 38.10 RPS | <span class="good-value-small">0.00%</span> |
+| Swoole | <span class="good-value-small">18.38 ms</span> | <span class="good-value-small">21.33 ms</span> | <span class="good-value-small">39.10 RPS</span> | <span class="good-value-small">0.00%</span> |
+| FrankenPHP | <span class="good-value-small">18.90 ms</span> | <span class="good-value-small">21.44 ms</span> | <span class="good-value-small">39.50 RPS</span> | <span class="good-value-small">0.00%</span> |
 
 
 ---
@@ -690,10 +690,10 @@ opcacheの話は一旦おしまい。<br>
 
 | サーバー | 平均CPU使用率 | 平均メモリ使用量 |
 | --- | --- | --- |
-| Apache+mod_php | 66.86% | 648.09MB |
-| Nginx+PHP-FPM | 45.81% | <span class="good-value">165.59MB</span> |
-| Nginx+Swoole | <span class="good-value">36.87%</span> | 980.35MB |
-| FrankenPHP | <span class="good-value">37.16%</span> | 288.75MB |
+| Apache+mod_php | 66.86% | 648.09 MB |
+| Nginx+PHP-FPM | 45.81% | <span class="good-value">165.59 MB</span> |
+| Nginx+Swoole | <span class="good-value">36.87%</span> | 980.35 MB |
+| FrankenPHP | <span class="good-value">37.16%</span> | 288.75 MB |
 
 * swooleとphp-fpmはNginxサーバーとの合算値
 
