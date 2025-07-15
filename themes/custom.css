@@ -186,8 +186,7 @@ table {
 th {
   background-color: var(--main-color);
   color: var(--text-color-inverse);
-  font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1em;
   padding: 15px;
   text-align: center;
   border: 1px solid #ddd;
@@ -196,9 +195,9 @@ th {
 td {
   padding: 12px;
   text-align: left;
-  border: 1px solid #ddd;
-  vertical-align: top;
+  vertical-align: bottom;
   text-align: end;
+  font-size:0.9em
 }
 
 td:first-child {
@@ -210,12 +209,26 @@ td:first-child {
 }
 
 /* 良い数値（パーセンテージやメモリ使用量）を青の太字で表示 */
-td span.good-value { 
+td span.good-value,
+td span.good-value-small{ 
   color: var(--main-color);
   font-weight: bold;
   font-size: 1.3em;
   text-decoration: underline;
 }
+
+td span.good-value-small {
+  font-size:1.0em
+}
+
+td span.good-minus-value { 
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 1.3em;
+  text-decoration: underline;
+}
+
+
 
 .good-value { 
   color: var(--main-color);
@@ -224,7 +237,8 @@ td span.good-value {
   text-decoration: underline;
 }
 
-td span.good-value::before {
+td span.good-value::before,
+td span.good-value-small::before {
   content: "⭕";
   color: var(--accent-color);
 }
@@ -411,6 +425,11 @@ h3 {
   font-size: 1.2em;
 }
 
+.icon-reading::before {
+  content: "📖";
+  font-size: 1.2em;
+}
+
 .bold-text {
   font-weight: bold;
 }
@@ -428,7 +447,7 @@ ol.table-content {
 }
 
 .font-size-large {
-  font-size: 2em;
+  font-size: 4em;
   font-weight: bold;
 }
 
@@ -483,5 +502,12 @@ ol.table-content {
 
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;}
+  border-bottom: 1px solid #eee;
+}
+
+/* 差分表示用の赤字クラス */
+td span.diff {
+  color: red;
+  font-weight: bold;
+}
 

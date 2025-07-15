@@ -19,7 +19,7 @@ theme: custom
 
 ---
 
-<h1 class="slide-section"> 導　　入
+<h1 class="slide-section"> 導　入
 
 ---
 
@@ -74,9 +74,11 @@ theme: custom
 
 ---
 
-<p class="middle-text">ソースコードなどの詳細はGitHubで公開中<br>
-urlをここに貼る
-</p>
+<p class="middle-text">ソースコード詳細はGitHubで公開中</p>
+<div class="inline-img-block">
+<p><img src="../images/logo/GitHub-Mark-ea2971cee799.png" width="50%"></p>
+<p class="normal-text">https://github.com/gmagmeg/performance-comparison/tree/main</p>
+</div>
 
 
 ---
@@ -350,7 +352,7 @@ todo：
 
 ---
 
-<h3 class="test-icon">試験概要</h3>
+<h3 class="test-icon">🧪試験概要</h3>
 
 - **ユーザー行動**: 記事投稿 **1回**につき、記事閲覧が**10回**発生する
 - **負荷増加**: 開始**60秒**で最大**80ユーザー/秒**まで増加させる
@@ -371,7 +373,7 @@ todo：
 
 <div class="columns">
 
-計：９テーブルを更新＆読み取る
+計：９テーブルに書き込み<br>　　＆読み取る
 <div>
 
 1. usersd
@@ -392,7 +394,51 @@ todo：
 </div>
 
 ---
+## 該当のソースURL
 
+- https://github.com/gmagmeg/performance-comparison/blob/main/new-apache/app/Http/Controllers/Api/PostWeightController.php
+- https://github.com/gmagmeg/performance-comparison/blob/main/new-apache/app/Services/PostWeighService.php
+
+---
+
+<h1> <span class="inline-img">📢</span> 計測結果発表</h1>
+
+---
+
+の前に
+
+# 用語紹介　Part2
+
+1. パーセンタイル
+1. スループット
+
+<span class="normal-text">これらを知っていると、計測結果がより分かりやすくなります</span>
+
+---
+
+## パーセンタイル(p90, p95)
+応答時間の分布を示す指標。<span class="middle-text">数値が少ないほどいい</span>
+90%・95%のリクエストが実際にこの時間内に完了したことを表す。
+
+**例：10個のリクエストの応答時間**
+　　9個: 100ms、1個: 10,000ms（10秒）
+
+- 平均値：1,090ms 　← 実際に体験したユーザーはいない
+- P90：100ms（90%のリクエストは100ms以内） ← 実際にユーザーが体験した数値
+- P95：100ms（95%のリクエストは100ms以内） ← 実際にユーザーが体験した数値
+
+---
+
+## スループット
+**単位時間あたりの処理能力**
+- 1秒間に処理できるリクエスト数(RPS)
+- システムの処理能力を直接表す指標
+- <span class="big-text">数値が高いほどいい</span>
+多くのユーザーに対応可能
+
+---
+
+あらためて
 <h1> <span class="inline-img">📢</span> 計測結果発表</h1>
 
 ---
@@ -411,11 +457,12 @@ todo：
 
 | 環境 | 平均CPU使用率 | 平均メモリ使用量 |
 | --- | --- | --- | 
-| Apache+PHP | 35.77% | 360.08MiB |
-| Nginx+PHP | 34.32% |  <span class="good-value">88.75MiB</span> |
-| Swoole | 32.03% | 962.9MiB |
+| Apache+mod_php | 35.77% | 360.08MiB |
+| Nginx+PHP-FPM | 34.32% |  <span class="good-value">190.75MiB</span> |
+| Nginx+Swoole | 32.03% | 962.9MiB |
 | FrankenPHP |  <span class="good-value">20.47%</span> | 288.4MiB |
 
+* swooleとphp-fpmはNginxサーバーとの合算値
 
 ---
 
@@ -425,22 +472,22 @@ todo：
 
 | 環境 | P95レスポンス | P90レスポンス | スループット |
 | --- | --- | --- | --- |
-| Apache+PHP | 36.91ms | 27.99ms | 28.49 RPS |
-| Nginx+PHP | 33.77ms | 25.54ms | 28.06 RPS |
-| Swoole | <span class="good-value">27.15ms</span> | <span class="good-value">20.51ms</span> | 28.58 RPS |
+| Apache+mod_php | 36.91ms | 27.99ms | 28.49 RPS |
+| Nginx+PHP-FPM | 33.77ms | 25.54ms | 28.06 RPS |
+| Nginx+Swoole | <span class="good-value">27.15ms</span> | <span class="good-value">20.51ms</span> | <span class="good-value">28.58 RPS</span> |
 | FrankenPHP | <span class="good-value">25.82ms</span> | <span class="good-value">19.51ms</span> | <span class="good-value">28.65 RPS</span> |
 
 ---
 
 <h2><span class="inline-img">➡️</span> レスポンス時間詳細比較</h2>
 
-<span class="normal-text">各処理別のレスポンス時間（P90）</span>
+<span class="normal-text">各処理別のレスポンス時間（P95）</span>
 
 | 環境 | POST処理（記事作成） | GET処理（記事取得） |
 | --- | --- | --- |
-| Apache+PHP | 49.61ms | 22.45ms |
-| Nginx+PHP | 50.53ms | 20.69ms |
-| Swoole | <span class="good-value">45.64ms</span> | <span class="good-value">16.38ms</span> |
+| Apache+mod_php | 49.61ms | 22.45ms |
+| Nginx+PHP-FPM | 50.53ms | 20.69ms |
+| Nginx+Swoole | <span class="good-value">45.64ms</span> | <span class="good-value">16.38ms</span> |
 | FrankenPHP | <span class="good-value">45.86ms</span> | <span class="good-value">15.48ms</span> |
 
 
@@ -463,11 +510,10 @@ todo：
 
 ---
 
-### パフォーマンス面
+### レスポンスパフォーマンス面
 
 <ul class="middle-text">
-<li> FrankenPHP・Swooleが総合的に最優秀<br>（レスポンス・CPU効率） </li>
-<li> Apache, Nginxと比較で<br><span class="good-value">⇧30-40%</span>の性能向上を実現 </li>
+<li> FrankenPHP・Swooleが総合的に最優秀<br>（レスポンス・CPU効率） <br>Apache, Nginxと比較で<br><span class="good-value">⇧30-40%</span>の性能向上を実現 </li>
 </ul>
 
 ---
@@ -476,227 +522,259 @@ todo：
 
 | 環境 | P95レスポンス | P90レスポンス | スループット |
 | --- | --- | --- | --- |
-| Apache+PHP | 36.91ms | 27.99ms | 28.49 RPS |
+| Apache+mod_php | 36.91ms | 27.99ms | 28.49 RPS |
 | **FrankenPHP** | **25.82ms** | **19.51ms** | **28.65 RPS** |
+| 差 | **<span class="diff">-11.09ms</span>** | **<span class="diff">-8.48ms</span>** | **<span class="diff">+0.16 RPS</span>** |
 
-<p class="normal-text">ここまで見て意外と大きな差がないように<br>見えたのではないでしょうか</p>
-
-
----
-
-ここで影の立役者
-### OPcache
+<p class="normal-text">ここまで見て差はあれど、<br>意外と大差が付かなかったようにも見えたのではないでしょうか</p>
 
 
 ---
 
-## OPcacheの有無で比較
+<span class="middle-text ">ここで影の立役者の登場</span>
+# OPcache
 
-Apache+mod_php
-同じ環境でもこれだけの違いが出ます
-
-| 項目 | Memcache無し | Memcache有り | 改善率 |
-| --- | --- | --- | --- |
-| **平均使用CPU** | 290% | 48% | **83%削減** |
-| **平均使用メモリ** | 2.175 **GiB** | 462.1 **MiB** | **79%削減** |
-| **平均レスポンス** | 90.31ms | 18.46ms | **80%改善** |
-| **P90レスポンス** | 119.35ms | 27.99ms | **77%改善** |
-| **P95レスポンス** | 130.59ms | 36.91ms | **72%改善** |
 
 ---
 
-opcacheありのApache+mod_php
-opcacheなしのfrankenphp
-そんなに変わらない
+## ⇔ Apache+mod_php<br>　 OPcacheの有無で比較
+
+<span class="middle-text ">同じ環境でもこれだけの違いが出ます</span>
+
+| 項目 | OPmcache無し | OPcache有り |
+| --- | --- | --- | 
+| **平均使用CPU** | 290% |<span class="middle-text">48%</span>（<span class="good-minus-value">83%削減</span>）|
+| **平均使用メモリ** | 2.175 <span class="middle-text">GiB</span> |<span class="middle-text">462.1 **MB**</span>（<span class="good-minus-value">79%削減</span>）|
+
+（CPUコア４つのため、100%越え）
 
 ---
 
-## opcacheの導入により大幅な性能改善
+## ⇔ Apache+mod_php<br>　 OPcacheの有無で比較
 
-こんな簡単な設定でも効果<span class="font-size-large">大</span>
+| 項目 | OPmcache無し | OPcache有り |
+| --- | --- | --- | 
+| **平均レスポンス** | 90.31ms |<span class="middle-text">18.46ms</span>（<span class="good-minus-value">80%改善</span>）|
+| **P90レスポンス** | 119.35ms |<span class="middle-text">27.99ms</span>（<span class="good-minus-value">77%改善</span>）| 
+| **P95レスポンス** | 130.59ms |<span class="middle-text">36.91ms</span>（<span class="good-minus-value">72%改善</span>）| 
+
+
+---
+
+## ⇧opcacheの導入により大幅な性能改善
+
+<span class="normal-text">この簡易設定でも効果 </span> <span class="font-size-large good-minus-value">大⇧</span>
 ```
 - opcache.enable=1  // 有効にする
 - opcache.enable_cli=1 // cliモードでも有効にする
 - opcache.memory_consumption=128 // キャッシュサイズの指定
 ```
-WebサーバーやDBのチューニングも重要だけれど
-PHPのチューニングも大切！
+
+<span class="normal-text">WebサーバーやDBのチューニングも重要だけれど
+PHPのチューニングも大切</span>
 
 ---
 
-PHPのチューニングの話は一旦おしまい。
+<span class="normal-text">
+opcacheの話は一旦おしまい。<br>
 よりWebサーバーの性能差が出る検証を見ていきます
+</span>
 
 ---
 
-## 負荷シナリオ２
-
-### 概要
-セール予告後のような急激な閲覧者増によるトラフィック増加に対する
-
-### 目的
-Webアプリケーションの**レスポンス性能**と**安定性**を評価する。
-
-**試験内容**:
-* **開始**: 0ユーザーから10秒で10ユーザーに増加
-* **スパイク**: 20秒で200ユーザーまで急激に増加
-* **終了**: 10秒で0ユーザーに減少
-
-<img src="../images/chart-spike-test-overview.png" />
+<ol class="table-content">
+<li>導入</li>
+<li>プロフィール・所属会社紹介</li>
+<li>各環境・用語・計測ツール紹介</li>
+<li>負荷シナリオ１ - アベレージロードテスト</li>
+<li class="active-text">負荷シナリオ２ - スパイクテスト</li>
+<li>総評と選択指針</li>
+<li>環境を向上させるTips３選</li>
+<li>まとめ</li>
+</ol>
 
 ---
 
-**合格基準 (SLO)**:
-* **レスポンスタイム (95パーセンタイル値)**: **2秒**未満
-* **エラーレート**: **1%** 未満
+## 負荷試験シナリオ２ - スパイクテスト
+
+<div class="columns ">
+  <p class=""><img src="../images/chart-spike-test-overview.png" width=500 /></p>
+  <div class="three">
+    <p><span class="bold-text">ℹ️概要</span><br>セール予告後のような急激な閲覧者増による<br>トラフィック増加に対する負荷試験</p>
+    <p><span class="bold-text">🎯目的</span>　急激なアクセス増加時の レスポンス性能 と 安定性 を評価する</p>
+  </div>
+</div>
 
 ---
 
-<h1 class="slide-section">計測結果発表</h1>
+<h3 class="test-icon">🧪試験概要</h3>
 
----
+- **開始**: **0ユーザー**から**10秒**で**10ユーザー**に増加
+- **スパイク**: **20秒**で<span class="attention">200ユーザー/秒</span>まで急激に増加
+- **終了**: **10秒**で**0ユーザー**に減少
+- **総試験時間**: **40秒間**でトラフィックパターンを実行
 
-## スパイクテスト結果比較
+<h3 class="check-icon"> 合格基準 (SLO)</h3>
 
-PHPアプリケーションサーバー性能比較
-200VU・40秒間のスパイクテスト
-
----
-
-## テスト概要
-
-| 項目 | 値 |
-| --- | --- |
-| 最大VU数 | 200 |
-| テスト時間 | 40秒 |
-| 段階 | 3段階のスパイク |
-| 閾値 | P95 < 2秒、失敗率 < 1% |
+- **レスポンスタイム** (P95): <span class="attention">2秒</span>未満
+- **エラーレート**: <span class="attention">1%</span> 未満
 
 ---
 
 
-## テスト概要
+<img class="inline-img" src="../images/logo/K6-logo.svg.png" alt="k6" width="100"> から
+`api/read-weight` にGETリクエスト（POSTなし）
 
-- **テストタイプ**: スパイクテスト
-- **最大VU数**: 200
-- **テスト時間**: 40秒 (3段階)
-- **閾値**: p(95) < 2秒, エラー率 < 1%
-
----
-
-## レスポンス時間比較
-
-| サーバー | p(90) | p(95) | スループット | エラー率 | 結果 |
-|---------|-------|-------|-------------|---------|------|
-| Apache | 68.92ms | 1.68s | 35.9 req/s | <span class="attention">2.19%</span> | ⚠️ |
-| Nginx+FPM | 22.15ms | 24.72ms | 38.1 req/s | 0.00% | ✅ |
-| Swoole | 18.38ms | 21.33ms | 38.1 req/s | 0.00% | ✅ |
-| FrankenPHP | 18.9ms | 21.44ms | 39.5 req/s | 0.00% | ✅ |
+<div class="columns">
 
 
----
+<div>
+計：９テーブルのデータを読み取り、JSONを返す<br><br>
 
-## リソース使用量
+1. usersd
+2. posts
+3. categories
+4. tags
+5. comments
 
-| サーバー | 平均CPU使用率 | 平均メモリ使用率 | 効率 |
-|---------|---------|-----------|------|
-| Apache | 66.86% | 648.09MB | 低 |
-| Nginx+FPM | 45.81% | 65.59MB | 高 |
-| Swoole | 36.87% | 980.35MB | 中 |
-| FrankenPHP | 37.16% | 288.75MB | 高 |
+</div>
+<div>
+
+6. post_views
+7. likes
+8. post_tags
+9. post_categories
+
+</div>
+
+</div>
 
 ---
 
-# 結果サマリー
+## JSONサンプル
 
-**性能ランキング:**
-1. **Swoole** - 最速レスポンス
-2. **FrankenPHP** - 最高スループット
-3. **Nginx+FPM** - バランス良好
-4. **Apache** - 高負荷時に劣化
+<img src="../images/code-json.png" width="100%">
 
-**リソース効率:**
-- FrankenPHP・Nginx: 低メモリ
-- Swoole: 低CPU使用率
+---
+
+## 該当のソースURL
+
+- https://github.com/gmagmeg/performance-comparison/blob/main/new-apache/app/Http/Controllers/Api/ReadWeighController.php
+
+---
+
+
+<h1> <span class="inline-img">⚡</span>スパイクテスト 計測結果発表</h1>
+
+---
+
+<h2><span class="inline-img">⏱️</span> レスポンス時間比較</h2>
+
+単一サーバーで受けようとすると、Apacheは厳しい結果に
+
+| サーバー | p(90) | p(95) | スループット | エラー率 |
+|---------|-------|-------|-------------|---------|
+| Apache+mod_php | 68.92ms | 1.68s | 35.9 req/s | <span class="attention">×2.19%</span> |
+| Nginx+FPM | 22.15ms | 24.72ms | 38.1 req/s | <span class="good-value-small">0.00%</span> |
+| Swoole | <span class="good-value-small">18.38ms</span> | <span class="good-value-small">21.33ms</span> | <span class="good-value-small">39.1 req/s</span> | <span class="good-value-small">0.00%</span> |
+| FrankenPHP | <span class="good-value-small">18.9ms</span> | <span class="good-value-small">21.44ms</span> | <span class="good-value-small">39.5 req/s</span> | <span class="good-value-small">0.00%</span> |
+
+
+---
+
+<h2><span class="inline-img">🖥️</span> リソース使用量比較</h2>
+
+<span class="normal-text">CPU使用率とメモリ使用量の比較</span>
+
+| サーバー | 平均CPU使用率 | 平均メモリ使用量 |
+| --- | --- | --- |
+| Apache+mod_php | 66.86% | 648.09MB |
+| Nginx+PHP-FPM | 45.81% | <span class="good-value">165.59MB</span> |
+| Nginx+Swoole | <span class="good-value">36.87%</span> | 980.35MB |
+| FrankenPHP | <span class="good-value">37.16%</span> | 288.75MB |
+
+* swooleとphp-fpmはNginxサーバーとの合算値
+
+---
+
+<h2> <span class="inline-img">📢</span> 計測結果総評</h2>
+
+**高負荷耐性**
+- **非同期処理系**（Swoole、FrankenPHP）は安定した低レイテンシーを維持
+- **従来プロセス管理**（Apache mod_php）は性能劣化とエラー発生が目立った
+
+**リソース効率**
+- **メモリ効率**: PHP-FPM > FrankenPHP > Apache > Swoole
+- **CPU効率**: Swoole ≈ FrankenPHP > PHP-FPM > Apache
 
 ---
 
 ## 負荷シナリオ1・2総評
 
-### パフォーマンス面の発見
-
-**通常負荷時（シナリオ1）**
+### ➡️通常負荷時（シナリオ1）
 - 全環境で安定動作、差は僅差
-- FrankenPHPが総合的に最優秀
-- OPcacheの効果が絶大（80%の性能向上）
+- 全環境でOPcacheの効果が絶大（80%の性能向上）
+- FrankenPHP・Swoole+Nignxが総合的に最優秀
 
-**高負荷時（シナリオ2）**
+### ⚡高負荷時（シナリオ2）
 - 環境間の性能差が顕著に現れる
 - 従来のApache構成では限界が露呈
 - ZTS・NTS環境が高負荷耐性で優位性を発揮
 
 ---
 
-### 実運用での選択指針
-
-**性能重視**: FrankenPHP・Swoole
-**リソース効率**: Nginx+PHP-FPM
-**安定性重視**: Nginx+PHP-FPM・FrankenPHP
-
-### 重要な教訓
-**OPcacheは必須設定**
-どの環境でも80%の性能向上効果
-
----
-
-## パフォーマンスがいい方に換えるのが正解か？
-<div>&nbsp;<br>&nbsp;</div>
-<div>
-  <ul class="one font-size-large">
-    <li>Swoole</li>
-    <li>FrankenPHP</li>
-  </ul>
-  <div class="one">
-    <img src="../images/thinking_face.png" width="20%" />
-  </div>
+<h2><span class="inline-img">🤔</span> パフォーマンスがいい方に<br>乗り換えるのが正解か？</h2>
+<div class="columns">
+<div><img src="../images/logo/swoole.png" width="80%"></div>
+<div><img src="../images/logo/frankenphp.png" width="60%"></div>
 </div>
 
+
 ---
 
-# アプリケーションの状態で考える
+<h2>🤔アプリケーションの状態で考える</h2>
 
-## そもそも現状に課題がないないのなら<br>変える必要はない
+<span class="big-text">大切な前提</span>
+<span class="middle-text">そもそも課題がないないのなら<br>無理に変える必要はない
+</span>
 
-<span class="normal-text">Apache + mod_php環境であっても
+<span class="middle-text"><br>Apache + mod_php環境であっても
 課題がないのなら変える必要はありません。
 Apacheもバリバリ更新中</span>
 
 ---
 
-# アプリケーションの利用用途で考える
+## 課題がある場合：アプリケーションの利用用途で考える
 
-## 読み取り主体か、書き込み主体か
 
-### アプリケーションが読み取り主体
-<span class="normal-text">Webサーバー・PHPのチューニングが効果的</span>
+### 📖アプリケーションが読み取り主体
+<span class="normal-text">Webサーバー・PHPのチューニングが効果的<br>このスライドの内容が役立てばうれしいです</span>
 
-### アプリケーションが書き込み主体
+### ✍️アプリケーションが書き込み主体
 <span class="normal-text">DBのチューニングが効果的</span>
 
 ---
 
-### 大きな改善をしなくても<br>少しの改善で早くすることが出来ないのか？
+### 現環境のパフォーマンスをよくするTipsを紹介
 
 ---
 
-
-<h1 class="slide-section"> 環境を向上させるTips３選
+<ol class="table-content">
+<li>導入</li>
+<li>プロフィール・所属会社紹介</li>
+<li>各環境・用語・計測ツール紹介</li>
+<li>負荷シナリオ１ - アベレージロードテスト</li>
+<li>負荷シナリオ２ - スパイクテスト</li>
+<li>総評と選択指針</li>
+<li class="active-text">環境を向上させるTips３選</li>
+<li>まとめ</li>
+</ol>
 
 ---
 
 <ul class="ol-large">
 <li>1. opcacheを使う</li>
-<li>2. Apache, Nginx のearly hints(103)対応</li>
+<li>2. early hints(103)対応</li>
 <li>3. Symfonyのドキュメントを参照する</li>
 </ul>
 
@@ -714,28 +792,41 @@ Apacheもバリバリ更新中</span>
 ---
 
 
-## 2. Apache, Nginxのearly hints(103)対応
-<div class="columns">
+## 2. early hints(103)対応
+
+サーバーが最終的なレスポンス（200 OK等）を準備している間に、
+ブラウザに対してリソース（CSS、JavaScript等）の先読みを
+指示する仕組み（プリロード）
+
+<img class="inline-img" src="../images/logo/frankenphp.png" alt="k6" width="15%"> では <span class="good-value">2~3ms</span> の短縮を確認
+
+
+---
+
+Apache, Nginxも直近で対応済み
+このプレゼンまでには間に合いませんでした...
+
+<div class="columns normal-text">
   <p class="one"><img src="../images/logo/nginx-1.svg" width=50% /></p>
   <p class="three">ver：1.29.0<br>2025年6月24日リリース</p>
 </div>
 
-<div class="columns">
-  <p class="one"><img src="../images/logo/apache_logo.png" width=30% /></p>
+<div class="columns normal-text">
+  <p class="one"><img src="../images/logo/apache_logo.png" width=30% />　</p>
   <p class="three">モジュール：HTTP/2<br>https://httpd.apache.org/docs/current/howto/http2.html<br>#page-header</p>
 </div>
 
-このプレゼン中には間に合いませんでした...
+
 
 ---
 
-## FrankenPHPの対応状況
+## early hintsのFrankenPHPの対応状況
 
 <p>&nbsp;</p>
 <div class="columns normal-text">
   <p class="one"><img src="../images/logo/frankenphp.png" /></p>
-  <p class="three">early hints(103)は組み込み済み<br>
-  PHPのコードに headers_send(103); と書くだけでOK<br>とても楽
+  <p class="three">early hints(103)は組み込み済み<br><br>
+  PHPのコードに<br>headers_send(103); <br>と書くだけでOK。とても楽。
   </p>
 </div>
 
@@ -757,7 +848,23 @@ Apacheもバリバリ更新中</span>
 
 ---
 
-## 実行環境特性まとめ
+<span class="middle-text">
+Apache + mod_phpやNginx + PHP-FPMでも<br>
+改善できることはちゃんとある！
+</span>
+
+---
+
+<ol class="table-content">
+<li>導入</li>
+<li>プロフィール・所属会社紹介</li>
+<li>各環境・用語・計測ツール紹介</li>
+<li>負荷シナリオ１ - アベレージロードテスト</li>
+<li>負荷シナリオ２ - スパイクテスト</li>
+<li>総評と選択指針</li>
+<li>環境を向上させるTips３選</li>
+<li class="active-text">まとめ</li>
+</ol>
 
 ---
 
@@ -778,9 +885,9 @@ Apacheもバリバリ更新中</span>
 
 <ul class="middle-list-text">
   <li><strong>適用シーン</strong>: バランス重視。現在最も普及している構成。</li>
-  <li><strong>主なメリット</strong>: 低メモリで安定性が高い。</li>
-  <li><strong>注意点</strong>: 中程度の性能だが、実用上は十分。<br>
-  １台１台のリソース効率が最も良好だが、<br>PHP+Webサーバーでサーバ台数が増えがち</li>
+  <li><strong>主なメリット</strong>: サーバーを分散する前提なので、<br>低メモリで安定性が高い。</li>
+  <li><strong>注意点</strong>: 
+  １台１台のリソース効率が最も良好だが、<br>PHP+Webサーバーでサーバー台数が増えがち</li>
 </ul>
 
 ---
@@ -801,7 +908,7 @@ Apacheもバリバリ更新中</span>
 <img src="../images/logo/frankenphp.png" class="frankenphp-logo">
 
 <ul class="middle-list-text">
-  <li><strong>適用シーン</strong>: 簡単に高性能要求を実現したい。</li>
+  <li><strong>適用シーン</strong>: 簡単に高性能要求を実現したい</li>
   <li><strong>主なメリット</strong>: 簡単にいい性能を取りやすい<br>（Early Hints標準対応など）</li>
   <li><strong>注意点</strong>: 新しい技術のため情報が少ない<br>
   実運用例も少ない</li>
