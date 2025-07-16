@@ -6,6 +6,15 @@ theme: custom
 <!-- paginate: true -->
 
 
+![bg](../images/title.png)
+
+<h1 class="slide-title">
+どこまで違う？！<br>PHP実行環境パフォーマンス対決<br>
+<span class="subtitle">- mod_php vs php-fpm vs Swoole vs FrankenPHP
+</h1>
+
+---
+
 ## 目次
 
 1. 導入
@@ -103,9 +112,20 @@ theme: custom
 
 ## プロフィール・所属会社紹介
 
-**発表者**: [お名前]
-**所属**: [会社名・部署名]
-**これまでの発表内容**: [過去の発表実績]
+<div class="columns">
+  <div class="inline-img-block">
+    <img src="../images/icon/prof-img-edit.png" width="600">
+  </div>
+  <div class="no-border">
+    <dl>
+      <dt>発表者</dt><dd>ma@me（SNS：ma_me）</dd>
+      <dt>所属</dt><dd class=""><img src="../images/logo/booost-logo.svg"></dd>
+      <dt>直近の登壇</dt><dd>
+      - phperkaigi 2025<br>
+      （PHP実行環境の歴史 PHP-FPMからFrankenPHPの誕生へ）</dd>
+    </dl>
+  </div>
+</div>
 
 ---
 

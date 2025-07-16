@@ -24,6 +24,8 @@ section {
   line-height: 1.6;
 }
 
+
+
 /* ヘッダー(h1, h2) のスタイルを定義します。 */
 h1, h2 {
   color: var(--main-color);
@@ -56,6 +58,23 @@ h3.check-icon::before {
   font-size: 1.2em;
 }
 
+.slide-title {
+  font-size: 2.5em;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left;
+  border: none;
+}
+
+.slide-title .subtitle {
+  font-size: 0.6em;
+  color: #ccc;
+  display: block;
+  margin-top: 10px;
+  border: none;
+}
+
 /* リンク(a) のスタイルには、ブランドの緑色を適用します。 */
 a {
   color: var(--brand-green);
@@ -66,6 +85,22 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+dt,
+dd {
+  display: flex;
+  justify-content: flex-start;
+}
+
+dt > img,
+dd > img {
+  padding: 0;
+  margin: 0;
+}
+
+dt {
+  color: var(--main-color);
 }
 
 /* コードブロック(<pre><code>) のスタイルを定義します。 */
