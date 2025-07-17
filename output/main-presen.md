@@ -115,18 +115,31 @@ theme: custom
 
 <div class="columns">
   <div class="inline-img-block">
-    <img src="../images/icon/prof-img-edit.png" width="600">
+    <img src="../images/icon/prof-img-edit.png" width="500">
   </div>
   <div class="no-border">
     <dl>
       <dt>発表者</dt><dd>ma@me（SNS：ma_me）</dd>
       <dt>所属</dt><dd class=""><img src="../images/logo/booost-logo.svg"></dd>
-      <dt>直近の登壇</dt><dd>
-      - phperkaigi 2025<br>
-      （PHP実行環境の歴史 PHP-FPMからFrankenPHPの誕生へ）</dd>
+      <dt>直近の登壇</dt>
+      <dd></dd>
+      <dt><img src="../images/logo/phper2025.svg" width="250" /></dt>
+      <dd>PHP実行環境の歴史<br>PHP-FPMからFrankenPHPの誕生へ</dd>
     </dl>
   </div>
 </div>
+
+---
+
+<img src="../images/image-1.png" width=1000>
+<div class="center-content">
+  <span class="middle-text">
+  <a href="https://booost.inc/RECRUIT">
+  PHPエンジニア 募集中!<br>
+  https://booost.inc/RECRUIT</a>
+  </span>
+</div>
+
 
 ---
 

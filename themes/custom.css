@@ -88,9 +88,16 @@ a:hover {
 }
 
 dt,
-dd {
+dd,
+dd > ul li 
+{
   display: flex;
   justify-content: flex-start;
+}
+
+li.left-align > img {
+  text-align: left;
+  justify-content: flex-start
 }
 
 dt > img,
@@ -187,6 +194,12 @@ section.inverse h1, section.inverse h2 {
   top: 50px;
   left: 50px;
   text-align: left;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .center は、コンテンツを中央揃えにします。 */
