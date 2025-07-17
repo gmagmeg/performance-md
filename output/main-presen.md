@@ -3,9 +3,6 @@ marp: true
 theme: custom
 ---
 
-<!-- paginate: true -->
-
-
 ![bg](../images/title.png)
 
 <h1 class="slide-title">
@@ -14,6 +11,9 @@ theme: custom
 </h1>
 
 ---
+
+
+<!-- paginate: true -->
 
 ## 目次
 
@@ -31,6 +31,7 @@ theme: custom
 <h1 class="slide-section"> 導　入
 
 ---
+
 
 # 比較・検証する環境
 
@@ -86,7 +87,7 @@ theme: custom
 <p class="middle-text">ソースコード詳細はGitHubで公開中</p>
 <div class="inline-img-block">
 <p><img src="../images/logo/GitHub-Mark-ea2971cee799.png" width="50%"></p>
-<p class="normal-text">https://github.com/gmagmeg/performance-comparison/tree/main</p>
+<a class="normal-text" href="https://github.com/gmagmeg/performance-comparison/tree/main">https://github.com/gmagmeg/performance-comparison/tree/main</a>
 </div>
 
 
@@ -943,7 +944,14 @@ Apache + mod_phpやNginx + PHP-FPMでも<br>
 
 ---
 
-<p class="middle-text">
-皆さんの実行環境選択の助けになれば幸いです<br>
-ご清聴ありがとうございました
-</p>
+<div class="columns">
+    <p>皆さんの実行環境選択の助けになれば幸いです<br>
+  ご清聴ありがとうございました
+  <br>
+  <br>一言でもフィードバックいただけると嬉しいです
+    </p>
+  <div>
+    <img src="../images/QR_754503.png" width="300">
+    <a href="https://fortee.jp/phpcon-kansai2025/me/feedback/868f9f9d-4244-4743-93c2-03abb3525421">forteeのフィードバックページ</a>
+  <a href="https://fortee.jp/phpcon-kansai2025/me/feedback/868f9f9d-4244-4743-93c2-03abb3525421"></div>
+</div>
