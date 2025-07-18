@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>∞È’œ;¶∆π»</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .chart-container {
+            width: 300px;
+            height: 200px;
+            margin: 20px;
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 8px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .chart-title {
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+        }
+        .chart-area {
+            padding: 10px;
+            height: 150px;
+            position: relative;
+        }
+        .bar {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            background: linear-gradient(to top, #00338D, #27DB84);
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+        }
+        .bar1 { left: 10px; }
+        .bar2 { left: 50px; }
+        .bar3 { left: 90px; }
+        .bar4 { left: 130px; }
+        .bar5 { left: 170px; }
+        .bar6 { left: 210px; }
+        .bar7 { left: 250px; }
+    </style>
+</head>
+<body>
+    <h1>∞È’œ;¶∆π»</h1>
+    <p>
+Kâk 36ms, 33ms, 27ms, 25ms gœ;åÜ</p>
+    
+    <div class="chart-container">
+        <div class="chart-title">∞È’1 (36ms)</div>
+        <div class="chart-area" id="chart1"></div>
+    </div>
+    
+    <div class="chart-container">
+        <div class="chart-title">∞È’2 (33ms)</div>
+        <div class="chart-area" id="chart2"></div>
+    </div>
+    
+    <div class="chart-container">
+        <div class="chart-title">∞È’3 (27ms)</div>
+        <div class="chart-area" id="chart3"></div>
+    </div>
+    
+    <div class="chart-container">
+        <div class="chart-title">∞È’4 (25ms)</div>
+        <div class="chart-area" id="chart4"></div>
+    </div>
+    
+    <button onclick="startDrawing()">œ;ãÀ</button>
+    <button onclick="resetCharts()">Íª√»</button>
+    
+    <script>
+        const chartData = [
+            { id: 'chart1', duration: 36, heights: [60, 80, 45, 90, 70, 55, 85] },
+            { id: 'chart2', duration: 33, heights: [75, 65, 95, 40, 80, 60, 90] },
+            { id: 'chart3', duration: 27, heights: [50, 85, 70, 60, 95, 45, 80] },
+            { id: 'chart4', duration: 25, heights: [80, 55, 90, 75, 45, 85, 65] }
+        ];
+        
+        function createBars(chartId, heights) {
+            const chart = document.getElementById(chartId);
+            chart.innerHTML = '';
+            
+            heights.forEach((height, index) => {
+                const bar = document.createElement('div');
+                bar.className = `bar bar${index + 1}`;
+                bar.style.height = '0px';
+                bar.style.transition = 'height 0.1s ease-out';
+                chart.appendChild(bar);
+            });
+        }
+        
+        function animateChart(chartId, heights, duration) {
+            const chart = document.getElementById(chartId);
+            const bars = chart.querySelectorAll('.bar');
+            const intervalTime = duration / heights.length;
+            
+            heights.forEach((height, index) => {
+                setTimeout(() => {
+                    bars[index].style.height = height + 'px';
+                }, index * intervalTime);
+            });
+        }
+        
+        function startDrawing() {
+            chartData.forEach(chart => {
+                createBars(chart.id, chart.heights);
+            });
+            
+            setTimeout(() => {
+                chartData.forEach(chart => {
+                    animateChart(chart.id, chart.heights, chart.duration);
+                });
+            }, 100);
+        }
+        
+        function resetCharts() {
+            chartData.forEach(chart => {
+                const chartElement = document.getElementById(chart.id);
+                chartElement.innerHTML = '';
+            });
+        }
+        
+        // 
+        window.addEventListener('load', () => {
+            chartData.forEach(chart => {
+                createBars(chart.id, chart.heights);
+            });
+        });
+    </script>
+</body>
+</html>

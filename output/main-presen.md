@@ -520,6 +520,12 @@ https://github.com/gmagmeg/performance-comparison
 
 ---
 
+<a class="middle-text" target="_blank" href="https://gmagmeg.github.io/performance-comparison/">P95ベースで速度差異を可視化（外部ページへ）
+https://gmagmeg.github.io/performance-comparison/
+</a>
+
+---
+
 <h2><span class="inline-img">➡️</span> レスポンス時間詳細比較</h2>
 
 <span class="normal-text">各処理別のレスポンス時間（P95）</span>
@@ -531,6 +537,11 @@ https://github.com/gmagmeg/performance-comparison
 | Nginx+Swoole | <span class="good-value">45.64 ms</span> | <span class="good-value">16.38 ms</span> |
 | FrankenPHP | <span class="good-value">45.86 ms</span> | <span class="good-value">15.48 ms</span> |
 
+---
+
+<a class="middle-text" target="_blank" href="https://gmagmeg.github.io/performance-comparison/post.html">POSTのP95ベースで速度差異を可視化（外部ページへ）
+https://gmagmeg.github.io/performance-comparison/post.html
+</a>
 
 ---
 <h2> <span class="inline-img">📢</span> 計測結果総評</h2>
@@ -559,7 +570,7 @@ https://github.com/gmagmeg/performance-comparison
 
 ---
 
-とはいえ…
+## 一番遅いApacheと<br>一番早いFrankenPHPで11msの差
 
 | 環境 | P95レスポンス | P90レスポンス | スループット |
 | --- | --- | --- | --- |
@@ -567,7 +578,17 @@ https://github.com/gmagmeg/performance-comparison
 | **FrankenPHP** | **25.82 ms** | **19.51 ms** | **28.65 RPS** |
 | 差 | **<span class="diff">-11.09 ms</span>** | **<span class="diff">-8.48 ms</span>** | **<span class="diff">+0.16 RPS</span>** |
 
-<p class="normal-text">ここまで見て差はあれど、<br>意外と大差が付かなかったようにも見えたのではないでしょうか</p>
+---
+
+
+<a class="middle-text" target="_blank" href="https://gmagmeg.github.io/performance-comparison/apache-diff-franken.html">11msの速度差異を可視化（外部ページへ）
+https://gmagmeg.github.io/performance-comparison/apache-diff-franken.html
+</a>
+
+
+---
+
+<p class="middle-text">🤔ここまで見て、多少差はあれど<br>意外と大差が付かなかったようにも<br>見えたのではないでしょうか</p>
 
 
 ---
@@ -599,16 +620,21 @@ https://github.com/gmagmeg/performance-comparison
 | **P90レスポンス** | 119.35 ms |<span class="middle-text">27.99 ms</span>（<span class="good-minus-value">77%改善</span>）| 
 | **P95レスポンス** | 130.59 ms |<span class="middle-text">36.91 ms</span>（<span class="good-minus-value">72%改善</span>）| 
 
+---
+
+<a class="middle-text" target="_blank" href="https://gmagmeg.github.io/performance-comparison/apache-diff.html">Opecacheの有無で速度差異を可視化（外部ページへ）
+https://gmagmeg.github.io/performance-comparison/apache-diff.html
+</a>
 
 ---
 
-## ⇧opcacheの導入により大幅な性能改善
+## ⇧OPcacheの導入により大幅な性能改善
 
 <span class="normal-text">この簡易設定でも効果 </span> <span class="font-size-large good-minus-value">大⇧</span>
 ```
-- opcache.enable=1  // 有効にする
-- opcache.enable_cli=1 // cliモードでも有効にする
-- opcache.memory_consumption=128 // キャッシュサイズの指定
+- OPcache.enable=1  // 有効にする
+- OPcache.enable_cli=1 // cliモードでも有効にする
+- OPcache.memory_consumption=128 // キャッシュサイズの指定
 ```
 
 <span class="normal-text">WebサーバーやDBのチューニングも重要だけれど
@@ -616,8 +642,8 @@ PHPのチューニングも大切</span>
 
 ---
 
-<span class="normal-text">
-opcacheの話は一旦おしまい。<br>
+<span class="middle-text">
+OPcacheの話は一旦おしまい。<br>
 よりWebサーバーの性能差が出る検証を見ていきます
 </span>
 
@@ -709,20 +735,6 @@ opcacheの話は一旦おしまい。<br>
 
 ---
 
-<h2><span class="inline-img">⏱️</span> レスポンス時間比較</h2>
-
-単一サーバーで受けようとすると、Apacheは厳しい結果に
-
-| サーバー | p(90) | p(95) | スループット | エラー率 |
-|---------|-------|-------|-------------|---------|
-| Apache+mod_php | 68.92 ms | 1.68 s | 35.90 RPS | <span class="attention">×2.19%</span> |
-| Nginx+FPM | 22.15 ms | 24.72 ms | 38.10 RPS | <span class="good-value-small">0.00%</span> |
-| Swoole | <span class="good-value-small">18.38 ms</span> | <span class="good-value-small">21.33 ms</span> | <span class="good-value-small">39.10 RPS</span> | <span class="good-value-small">0.00%</span> |
-| FrankenPHP | <span class="good-value-small">18.90 ms</span> | <span class="good-value-small">21.44 ms</span> | <span class="good-value-small">39.50 RPS</span> | <span class="good-value-small">0.00%</span> |
-
-
----
-
 <h2><span class="inline-img">🖥️</span> リソース使用量比較</h2>
 
 <span class="normal-text">CPU使用率とメモリ使用量の比較</span>
@@ -736,7 +748,28 @@ opcacheの話は一旦おしまい。<br>
 
 * swooleとphp-fpmはNginxサーバーとの合算値
 
+
 ---
+
+<h2><span class="inline-img">⏱️</span> レスポンス時間比較</h2>
+
+単一サーバーで受けようとすると、Apacheは厳しい結果に
+
+| サーバー | p(90) | p(95) | スループット | エラー率 |
+|---------|-------|-------|-------------|---------|
+| Apache+mod_php | 68.92 ms | 1.68 s | 35.90 RPS | <span class="attention">×2.19%</span> |
+| Nginx+FPM | 22.15 ms | 24.72 ms | 38.10 RPS | <span class="good-value-small">0.00%</span> |
+| Swoole | <span class="good-value-small">18.38 ms</span> | <span class="good-value-small">21.33 ms</span> | <span class="good-value-small">39.10 RPS</span> | <span class="good-value-small">0.00%</span> |
+| FrankenPHP | <span class="good-value-small">18.90 ms</span> | <span class="good-value-small">21.44 ms</span> | <span class="good-value-small">39.50 RPS</span> | <span class="good-value-small">0.00%</span> |
+
+---
+
+<a class="middle-text" target="_blank" href="https://gmagmeg.github.io/performance-comparison/spike.html">スパイクテストの速度差異を可視化（外部ページへ）
+https://gmagmeg.github.io/performance-comparison/spike.html
+</a>
+
+---
+
 
 <h2> <span class="inline-img">📢</span> 計測結果総評</h2>
 
@@ -794,9 +827,6 @@ Apacheもバリバリ更新中</span>
 ### ✍️アプリケーションが書き込み主体
 <span class="normal-text">DBのチューニングが効果的</span>
 
----
-
-### 現環境のパフォーマンスをよくするTipsを紹介
 
 ---
 
@@ -814,7 +844,7 @@ Apacheもバリバリ更新中</span>
 ---
 
 <ul class="ol-large">
-<li>1. opcacheを使う</li>
+<li>1. OPcacheを使う</li>
 <li>2. early hints(103)対応</li>
 <li>3. Symfonyのドキュメントを参照する</li>
 </ul>
@@ -874,7 +904,8 @@ Apache, Nginxも直近で対応済み
 ---
 
 ## 3. Symfonyのドキュメントを参照する
-<img src="../images/logo/symphony-sample.png" width="70%" />
+<a href="https://symfony.com/doc/current/performance.html"><img src="../images/logo/symphony-sample.png" width="50%" /></a>
+<a href="https://symfony.com/doc/current/performance.html">https://symfony.com/doc/current/performance.html</a>
 
 ---
 
